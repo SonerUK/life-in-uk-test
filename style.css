@@ -1,39 +1,74 @@
-/* Sayfa Arkaplanı ve Genel Tasarım */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #e9ecef;
-    color: #212529;
-    margin: 0;
-    padding: 0;
-    height: 100vh; /* Sayfanın tamamını kapsayacak şekilde */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-/* Başlık Stili */
-h1 {
-    text-align: center;
-    margin-top: 50px;
-    font-size: 36px;
-    color: #007bff;
-}
-
-/* Buton Stili */
-button {
-    background-color: red; /* Buton rengini kırmızı yapıyoruz */
-    color: white; /* Buton metni beyaz */
+/* Zaman Sayacı */
+#zaman-sayaci {
     font-size: 18px;
-    padding: 15px 30px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Soru Navigasyonu */
+#soru-navigasyonu {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.soru-numarasi {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.soru-numarasi.aktif {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.soru-numarasi.dogru {
+    background-color: green;
+    color: white;
+}
+
+.soru-numarasi.yanlis {
+    background-color: red;
+    color: white;
+}
+
+.soru-numarasi.gozden-gecir {
+    background-color: yellow;
+    color: black;
+}
+
+/* Soru ve Cevaplar */
+#soru-alani {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Kontrol Düğmeleri */
+#kontrol-dugmeleri {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px;
-    width: 200px; /* Buton genişliği */
-    text-align: center;
+    margin: 5px;
 }
 
 button:hover {
-    background-color: #c82333; /* Butona hover efekti */
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
 }
