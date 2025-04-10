@@ -197,8 +197,8 @@ body {
 
 /* Fare, pasif olmayan bir seçeneğin üzerine geldiğinde (.option:hover:not(.disabled)) */
 .option:hover:not(.disabled) {
-    background-color: #015DC8; /* Arka plan rengini çok açık gri yapar. */
-    border-color: #bbb;        /* Kenarlık rengini biraz daha koyu gri yapar. */
+    background-color: #e0f2fe; /* Arka plan rengini çok açık gri yapar. */
+    border-color: #0ea5e9;        /* Kenarlık rengini biraz daha koyu gri yapar. */
 }
 
 /* Pasif durumdaki (disabled) seçeneklerin metni (.option içindeki disabled input'tan sonra gelen label) */
