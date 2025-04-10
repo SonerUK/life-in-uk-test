@@ -125,9 +125,8 @@ const questions = [
         answer: "Lent"
     }
 
+
 ];
-
-
 
 let currentQuestion = 0;
 let selectedAnswers = [];
@@ -145,7 +144,7 @@ function displayQuestion() {
     const question = questions[currentQuestion];
     questionAreaDiv.innerHTML = `
         <div class="question">
-            Question ${currentQuestion + 1} of ${questions.length}
+            <strong>${currentQuestion + 1}</strong>
             <div class="question-text">${question.question}</div>
             <div class="audio-icon"></div>
         </div>
