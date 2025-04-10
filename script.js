@@ -18,6 +18,7 @@ let questions = [
 ];
 
 let currentQuestionIndex = 0;
+let correctAnswers = 0; // Kullanıcının doğru cevap sayısını tutuyor
 
 // Fonksiyon: Soruları göster
 function showQuestion() {
@@ -40,6 +41,7 @@ function showQuestion() {
 function checkAnswer(selectedAnswer) {
     let question = questions[currentQuestionIndex];
     if (selectedAnswer === question.correctAnswer) {
+        correctAnswers++;  // Doğru cevap sayısını artır
         alert("Correct!");
     } else {
         alert("Incorrect. Try again!");
@@ -50,7 +52,9 @@ function checkAnswer(selectedAnswer) {
     if (currentQuestionIndex < questions.length) {
         showQuestion();
     } else {
-        alert("Test complete! Well done.");
+        alert(`Test complete! You got ${correctAnswers} out of ${questions.length} correct.`);
+        // Sonuçları localStorage'a kaydet
+        localStorage.setItem("lifeInUKTestResults", JSON.stringify({ correctAnswers }));
     }
 }
 
