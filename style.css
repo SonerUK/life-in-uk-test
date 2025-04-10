@@ -1,10 +1,10 @@
 /* === Genel Sayfa Stilleri === */
 /* 'body' etiketi tüm HTML sayfasını temsil eder */
 body {
-    font-family: sans-serif;   /* Sayfadaki tüm metinler için varsayılan yazı tipi ailesini 'sans-serif' (tırnaksız, modern) olarak ayarlar. Tarayıcı uygun bir font seçer (Arial, Helvetica vb.). */
+    font-family: Arial, sans-serif;   /* Sayfadaki tüm metinler için varsayılan yazı tipi 'Arial' olarak ayarlandı. Eğer Arial bulunamazsa, tarayıcı benzer bir sans-serif font seçecektir. */
     margin: 0;                 /* Sayfanın kenarlarında tarayıcının varsayılan olarak eklediği dış boşlukları sıfırlar. */
     padding: 20px;             /* Sayfanın içeriği ile kenarları arasına her yönden 20 piksel iç boşluk ekler. */
-    background-color: #F8FAF5; /* Sayfanın arka plan rengini çok açık gri/kirli beyaz yapar. */
+    background-color: #FFFFFF; /* Sayfanın arka plan rengini  beyaz yapar. */
     color: #000;               /* Sayfadaki tüm metinler için varsayılan yazı rengini siyah yapar. */
 }
 
@@ -13,10 +13,10 @@ body {
     width: 800px;              /* Kutunun genişliğini 800 piksel olarak ayarlar. */
     max-width: 95%;            /* Kutunun genişliğinin, ekran genişliğinin %95'ini geçmesini engeller (küçük ekranlarda taşmayı önler). */
     margin: 20px auto;         /* Üst ve alt kenarlara 20 piksel, sağ ve sol kenarlara ise 'auto' (otomatik) dış boşluk verir. 'auto' sayesinde kutu yatayda ortalanır. */
-    background-color: white;   /* Kutunun arka plan rengini beyaz yapar. */
+    background-color: #FFFFFF; /* Kutunun arka plan rengini beyaz yapar. */
     padding: 20px;             /* Kutunun içeriği ile kenarları arasına her yönden 20 piksel iç boşluk ekler. */
-    border-radius: 5px;        /* Kutunun köşelerini 5 piksel yarıçapında yuvarlar. */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Kutuya hafif bir gölge efekti ekler (yatayda 0, dikeyde 0, bulanıklık 10px, renk çok şeffaf siyah). */
+    border-radius: 20px;        /* Kutunun köşelerini 20 piksel yarıçapında yuvarlar. */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Kutuya hafif bir gölge efekti ekler (yatayda 0, dikeyde 0, bulanıklık 10px, renk çok şeffaf siyah). */
 }
 
 /* === Zamanlayıcı === */
