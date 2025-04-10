@@ -128,6 +128,7 @@ const questions = [
 ];
 
 
+
 let currentQuestion = 0;
 let selectedAnswers = [];
 let correctAnswers = 0;
@@ -150,7 +151,7 @@ function displayQuestion() {
         </div>
         <div class="options">
             ${question.options.map((option, index) => `
-                <div class="option ${selectedAnswers[currentQuestion] === option ? (question.answer === option || (Array.isArray(question.answer) && question.answer.includes(option)) ? 'correct' : 'incorrect') : (question.answer === option || (Array.isArray(question.answer) && question.answer.includes(option)) ? 'correct' : '')}">
+                <div class="option ${selectedAnswers[currentQuestion] && selectedAnswers[currentQuestion] === option ? 'selected' : ''}">
                     <input type="radio" name="answer" value="${option}" ${selectedAnswers[currentQuestion] === option ? 'checked' : ''}>
                     ${option}
                 </div>
@@ -208,6 +209,14 @@ function updateNumberDivs() {
 }
 
 function handleNext() {
+    const options = document.querySelectorAll('.option');
+    options.forEach((option, index) => {
+        if (questions[currentQuestion].answer === questions[currentQuestion].options[index] || (Array.isArray(questions[currentQuestion].answer) && questions[currentQuestion].answer.includes(questions[currentQuestion].options[index]))) {
+            option.classList.add('correct');
+        } else if (selectedAnswers[currentQuestion] === questions[currentQuestion].options[index]) {
+            option.classList.add('incorrect');
+        }
+    });
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         displayQuestion();
