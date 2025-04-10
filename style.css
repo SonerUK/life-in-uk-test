@@ -205,7 +205,7 @@ body {
 .option input[type="radio"]:disabled + label,
 .option input[type="checkbox"]:disabled + label {
     cursor: default;           /* Fare imlecini varsayılan ok şeklinde gösterir. */
-    color: #cf2e2e;               /* Yazı rengini gri yapar. */
+    color: #000;               /* Yazı rengini gri yapar. */
 }
 
 /* Pasif durumdaki (disabled) radyo düğmesi veya onay kutusu */
