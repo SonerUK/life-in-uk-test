@@ -33,9 +33,9 @@ body {
     height: 20px;
     border: 5px solid #ccc;
     border-radius: 50%; /* Kare yerine yuvarlak */
-    margin: 90px;
+    margin: 70px;
     display: flex;
-    outline: 3px solid #333
+    outline: 2px solid #ccc
     justify-content: center;
     align-items: center;
     cursor: pointer;
