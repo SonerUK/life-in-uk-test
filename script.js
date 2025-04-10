@@ -128,7 +128,6 @@ const questions = [
 ];
 
 
-
 let currentQuestion = 0;
 let selectedAnswers = [];
 let correctAnswers = 0;
@@ -151,7 +150,7 @@ function displayQuestion() {
         </div>
         <div class="options">
             ${question.options.map((option, index) => `
-                <div class="option">
+                <div class="option ${selectedAnswers[currentQuestion] === option ? (question.answer === option || (Array.isArray(question.answer) && question.answer.includes(option)) ? 'correct' : 'incorrect') : (question.answer === option || (Array.isArray(question.answer) && question.answer.includes(option)) ? 'correct' : '')}">
                     <input type="radio" name="answer" value="${option}" ${selectedAnswers[currentQuestion] === option ? 'checked' : ''}>
                     ${option}
                 </div>
