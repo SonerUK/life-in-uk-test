@@ -122,10 +122,18 @@ button {
     cursor: pointer;
 }
 
-button.review {
+button.check {
     background-color: orange;
 }
 
 button.next {
     background-color: green;
+}
+
+.result {
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #f0f0f0;
 }
