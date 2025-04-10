@@ -205,7 +205,7 @@ body {
 .option input[type="radio"]:disabled + label,
 .option input[type="checkbox"]:disabled + label {
     cursor: default;           /* Fare imlecini varsayılan ok şeklinde gösterir. */
-    color: #000;               /* Yazı rengini gri yapar. */
+    color: #000;               /* Yazı rengini SİYAH yapar. */
 }
 
 /* Pasif durumdaki (disabled) radyo düğmesi veya onay kutusu */
@@ -217,7 +217,7 @@ body {
 /* Pasif durumdaki seçeneğin tüm kutusu (.option class'ına ek olarak .disabled class'ı varsa) */
 .option.disabled {
      cursor: default;           /* Fare imlecini varsayılan ok şeklinde gösterir. */
-     opacity: 0.7;             /* Öğeyi biraz şeffaflaştırarak soluk görünmesini sağlar. */
+     opacity: 1;             /* Öğeyi biraz şeffaflaştırarak soluk görünmesini sağlar. */
 }
 
 
@@ -246,12 +246,14 @@ body {
 .option.selected {
   background-color: #e0f2fe; /* Arka plan rengini açık mavi yapar. */
   border-color: #0ea5e9;     /* Kenarlık rengini biraz daha belirgin mavi yapar. */
+  border: 2px solid #0ea5e9;    /* 1 piksel kalınlığında, açık gri kenarlık. */
 }
 
 /* CHECK sonrası doğru olarak işaretlenen seçenek (.option class'ına ek olarak .marked-correct class'ı varsa) */
 .option.marked-correct {
   background-color: #95D195; /* Arka plan rengini açık yeşil yapar. */
   border-color: #66BB6A;     /* Kenarlık rengini biraz daha koyu yeşil yapar. */
+  border: 2px solid #66BB6A;    /* 1 piksel kalınlığında, açık gri kenarlık. */
   color: #000;              /* Yazı rengini siyah yapar. */
   font-weight: bold;         /* Yazıyı kalın yapar. */
 }
@@ -261,6 +263,7 @@ body {
   background-color: #FF9191; /* Arka plan rengini açık kırmızı/pembe yapar. */
   border-color: #E57373;     /* Kenarlık rengini biraz daha koyu kırmızı yapar. */
   color: #000;              /* Yazı rengini siyah yapar. */
+  border: 1px solid #E57373;    /* 1 piksel kalınlığında, açık gri kenarlık. */
 }
 
 /* Yanlış işaretlenen seçeneğin sonuna eklenen çarpı işareti (.marked-incorrect içindeki label'dan sonra gelen ::after pseudo-element) */
