@@ -1,74 +1,160 @@
+/* Genel Sayfa Stili */
+body {
+    background-color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
 /* Zaman Sayacı */
 #zaman-sayaci {
-    font-size: 18px;
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Soru Navigasyonu */
-#soru-navigasyonu {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.soru-numarasi {
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-.soru-numarasi.aktif {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.soru-numarasi.dogru {
-    background-color: green;
-    color: white;
-}
-
-.soru-numarasi.yanlis {
-    background-color: red;
-    color: white;
-}
-
-.soru-numarasi.gozden-gecir {
-    background-color: yellow;
+    font-weight: normal;
     color: black;
-}
-
-/* Soru ve Cevaplar */
-#soru-alani {
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Kontrol Düğmeleri */
-#kontrol-dugmeleri {
-    text-align: center;
     margin-top: 20px;
 }
 
-button {
+/* Soru Numaraları */
+#soru-navigasyonu {
+    margin-top: 30px;
+}
+
+#soru-numaralari {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.soru-numarasi {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    color: black;
+    line-height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.soru-numarasi.aktif {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Durum Göstergeleri */
+#durum-gostergeleri {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.durum-kare {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#dogru {
+    background-color: green;
+}
+
+#gozden-gecir {
+    background-color: yellow;
+}
+
+#yanlis {
+    background-color: red;
+}
+
+/* Soru ve Cevap Alanı */
+#soru-alani {
+    margin-top: 30px;
+    text-align: left;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#soru-numarasi {
+    font-weight: normal;
+    color: black;
+    font-size: 18px;
+}
+
+#soru-metni {
+    margin-top: 15px;
+    font-weight: normal;
+    color: black;
+    font-size: 20px;
+}
+
+#ses-simgesi {
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+#cevaplar {
+    margin-top: 30px;
+}
+
+/* Cevap Kutuları */
+#cevaplar label {
+    display: block;
+    margin: 10px 0;
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-weight: normal;
+    color: black;
+    cursor: pointer;
+}
+
+#cevaplar input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Butonlar */
+#butonlar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.buton {
+    font-weight: bold;
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
+    border-radius: 30px;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    margin: 5px;
+    margin: 0 10px;
 }
 
-button:hover {
-    background-color: #45a049;
+.mavi {
+    background-color: #007bff;
 }
 
-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
+.sari {
+    background-color: #ffc107;
+}
+
+.buton:hover {
+    opacity: 0.8;
+}
+
+/* Radyo Butonları */
+input[type="radio"]:checked + label {
+    background-color: #e7f3ff;
+}
+
+input[type="radio"]:checked + label:hover {
+    background-color: #cce7ff;
 }
