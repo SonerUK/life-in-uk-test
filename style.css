@@ -1,160 +1,121 @@
-/* Genel Sayfa Stili */
 body {
-    background-color: white;
-    font-family: 'Arial', sans-serif;
+    font-family: sans-serif;
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
-/* Zaman Sayacı */
-#zaman-sayaci {
-    font-weight: normal;
-    color: black;
-    margin-top: 20px;
+.container {
+    width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Soru Numaraları */
-#soru-navigasyonu {
-    margin-top: 30px;
-}
-
-#soru-numaralari {
-    display: flex;
-    justify-content: center;
+.time-limit {
+    font-size: 18px;
+    font-weight: bold;
     margin-bottom: 10px;
 }
 
-.soru-numarasi {
-    width: 40px;
-    height: 40px;
+.question-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.number {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     margin: 5px;
-    border-radius: 50%;
-    background-color: #f2f2f2;
-    color: black;
-    line-height: 40px;
-    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
 
-.soru-numarasi.aktif {
-    background-color: #007bff;
+.number.active {
+    background-color: blue;
     color: white;
 }
 
-/* Durum Göstergeleri */
-#durum-gostergeleri {
+.status {
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
+    justify-content: space-around;
+    margin-bottom: 10px;
 }
 
-.durum-kare {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 5px;
+.correct {
+    color: green;
 }
 
-#dogru {
-    background-color: green;
+.review {
+    color: orange;
 }
 
-#gozden-gecir {
-    background-color: yellow;
+.incorrect {
+    color: red;
 }
 
-#yanlis {
-    background-color: red;
+.question {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Soru ve Cevap Alanı */
-#soru-alani {
-    margin-top: 30px;
-    text-align: left;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#soru-numarasi {
-    font-weight: normal;
-    color: black;
-    font-size: 18px;
-}
-
-#soru-metni {
-    margin-top: 15px;
-    font-weight: normal;
-    color: black;
+.audio-icon {
     font-size: 20px;
-}
-
-#ses-simgesi {
-    margin-top: 15px;
     cursor: pointer;
 }
 
-#cevaplar {
-    margin-top: 30px;
+.options {
+    margin-bottom: 10px;
 }
 
-/* Cevap Kutuları */
-#cevaplar label {
-    display: block;
-    margin: 10px 0;
-    background-color: white;
+.option {
     padding: 10px;
-    border-radius: 20px;
     border: 1px solid #ccc;
-    font-weight: normal;
-    color: black;
-    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
 }
 
-#cevaplar input[type="radio"] {
+.option input[type="radio"] {
     margin-right: 10px;
 }
 
-/* Butonlar */
-#butonlar {
-    margin-top: 30px;
+.explanation {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.buton {
-    font-weight: bold;
+button {
     padding: 10px 20px;
-    border-radius: 30px;
-    color: white;
     border: none;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
     cursor: pointer;
-    margin: 0 10px;
 }
 
-.mavi {
-    background-color: #007bff;
+button.review {
+    background-color: orange;
 }
 
-.sari {
-    background-color: #ffc107;
-}
-
-.buton:hover {
-    opacity: 0.8;
-}
-
-/* Radyo Butonları */
-input[type="radio"]:checked + label {
-    background-color: #e7f3ff;
-}
-
-input[type="radio"]:checked + label:hover {
-    background-color: #cce7ff;
+button.next {
+    background-color: green;
 }
