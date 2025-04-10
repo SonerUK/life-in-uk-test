@@ -1,341 +1,458 @@
 /* === Genel Sayfa Stilleri === */
+/* 'body' etiketi tüm HTML sayfasını temsil eder */
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #F8FAF5;
-    color: #000;
+    font-family: sans-serif;   /* Sayfadaki tüm metinler için varsayılan yazı tipi ailesini 'sans-serif' (tırnaksız, modern) olarak ayarlar. Tarayıcı uygun bir font seçer (Arial, Helvetica vb.). */
+    margin: 0;                 /* Sayfanın kenarlarında tarayıcının varsayılan olarak eklediği dış boşlukları sıfırlar. */
+    padding: 20px;             /* Sayfanın içeriği ile kenarları arasına her yönden 20 piksel iç boşluk ekler. */
+    background-color: #F8FAF5; /* Sayfanın arka plan rengini çok açık gri/kirli beyaz yapar. */
+    color: #000;               /* Sayfadaki tüm metinler için varsayılan yazı rengini siyah yapar. */
 }
 
+/* Ana içerik alanını saran kutu (.container class'ına sahip div) */
 .container {
-    width: 800px;
-    max-width: 95%;
-    margin: 20px auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 800px;              /* Kutunun genişliğini 800 piksel olarak ayarlar. */
+    max-width: 95%;            /* Kutunun genişliğinin, ekran genişliğinin %95'ini geçmesini engeller (küçük ekranlarda taşmayı önler). */
+    margin: 20px auto;         /* Üst ve alt kenarlara 20 piksel, sağ ve sol kenarlara ise 'auto' (otomatik) dış boşluk verir. 'auto' sayesinde kutu yatayda ortalanır. */
+    background-color: white;   /* Kutunun arka plan rengini beyaz yapar. */
+    padding: 20px;             /* Kutunun içeriği ile kenarları arasına her yönden 20 piksel iç boşluk ekler. */
+    border-radius: 5px;        /* Kutunun köşelerini 5 piksel yarıçapında yuvarlar. */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Kutuya hafif bir gölge efekti ekler (yatayda 0, dikeyde 0, bulanıklık 10px, renk çok şeffaf siyah). */
 }
 
 /* === Zamanlayıcı === */
+/* Zamanlayıcı metnini içeren element (.time-limit class'ına sahip div) */
 .time-limit {
-    font-size: 18px; /* Boyut korundu */
-    font-weight: bold; /* <<< BOLD istendi */
-    margin-bottom: 15px;
-    text-align: left;
-    color: #000; /* <<< RENK DEĞİŞTİ & BOLD */
+    font-size: 18px;           /* Yazı boyutunu 18 piksel yapar. */
+    font-weight: bold;         /* Yazıyı kalın (bold) yapar. */
+    margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır. */
+    text-align: left;          /* Metni sola hizalar. */
+    color: #000;               /* Yazı rengini siyah yapar. */
 }
 
 /* === Soru Numaraları === */
+/* Tüm soru numarası yuvarlaklarını içeren ana kutu (.question-numbers class'ına sahip div) */
 .question-numbers {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
+    display: flex;             /* İçindeki numaraları esnek bir şekilde yan yana dizer. */
+    flex-wrap: wrap;           /* Numaralar sığmazsa alt satıra kaydırır. */
+    margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır. */
+    padding-bottom: 10px;      /* İçeriğinin altına (alt kenarlığa kadar) 10 piksel boşluk ekler. */
+    border-bottom: 1px solid #eee; /* Altına 1 piksel kalınlığında, çok açık gri, düz bir çizgi ekler. */
 }
 
+/* Tek bir soru numarası yuvarlağı (.number class'ına sahip div) */
 .number {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #555;
-    border-radius: 50%;
-    margin: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
-    font-weight: bold;
-    color: #000;
-    background-color: #fff;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    width: 30px;               /* Yuvarlağın genişliği 30 piksel. */
+    height: 30px;              /* Yuvarlağın yüksekliği 30 piksel. */
+    border: 2px solid #555;    /* 2 piksel kalınlığında, koyu gri kenarlık. */
+    border-radius: 50%;        /* Köşeleri %50 yuvarlayarak tam daire yapar. */
+    margin: 5px;               /* Dışına her yönden 5 piksel boşluk (diğer numaralarla arasını açar). */
+    display: flex;             /* İçindeki rakamı ortalamak için flex modelini kullanır. */
+    justify-content: center;   /* İçindeki rakamı yatayda ortalar. */
+    align-items: center;       /* İçindeki rakamı dikeyde ortalar. */
+    cursor: pointer;           /* Fare üzerine gelince el işareti gösterir (tıklanabilir). */
+    box-sizing: border-box;    /* Genişlik/yüksekliğe kenarlık ve dolguyu dahil eder. */
+    text-align: center;        /* Metni (rakamı) yatayda ortalar. */
+    font-weight: bold;         /* Rakamı kalın yapar. */
+    color: #000;               /* Rakamın rengini siyah yapar. */
+    background-color: #fff;    /* Arka plan rengini beyaz yapar. */
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* Arka plan, yazı rengi ve kenarlık değiştiğinde 0.2 saniyelik yumuşak geçiş efekti uygular. */
 }
 
+/* Aktif (o an görüntülenen) soru numarası (.number class'ına ek olarak .active class'ı varsa) */
 .number.active {
-    background-color: #015DC8;
-    color: white;
-    border-color: #014A9E;
+    background-color: #015DC8; /* Arka planı mavi yapar. */
+    color: white;              /* Yazı rengini beyaz yapar. */
+    border-color: #014A9E;     /* Kenarlık rengini biraz daha koyu mavi yapar. */
 }
 
+/* İncelenmek üzere işaretlenen soru numarası (.number class'ına ek olarak .review class'ı varsa) */
 .number.review {
-  background-color: #FFC941;
-  color: #000;
-  border-color: #E0B03A;
+  background-color: #FFC941; /* Arka planı sarı yapar. */
+  color: #000;              /* Yazı rengini siyah yapar. */
+  border-color: #E0B03A;     /* Kenarlık rengini biraz daha koyu sarı yapar. */
 }
 
+/* Doğru cevaplanmış soru numarası (.number class'ına ek olarak .correct class'ı varsa) */
 .number.correct {
-  background-color: #22c55e;
-  color: white;
-  border-color: #16a34a;
+  background-color: #22c55e; /* Arka planı yeşil yapar. */
+  color: white;              /* Yazı rengini beyaz yapar. */
+  border-color: #16a34a;     /* Kenarlık rengini biraz daha koyu yeşil yapar. */
 }
+
+/* Yanlış cevaplanmış soru numarası (.number class'ına ek olarak .incorrect class'ı varsa) */
 .number.incorrect {
-  background-color: #ef4444;
-  color: white;
-  border-color: #dc2626;
+  background-color: #ef4444; /* Arka planı kırmızı yapar. */
+  color: white;              /* Yazı rengini beyaz yapar. */
+  border-color: #dc2626;     /* Kenarlık rengini biraz daha koyu kırmızı yapar. */
 }
 
 
 /* === Durum Göstergeleri === */
+/* CORRECT, REVIEW, INCORRECT yazılarının bulunduğu alan (.status class'ına sahip div) */
 .status {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-    font-size: 12px; /* Boyut korundu */
+    display: flex;             /* İçindeki öğeleri (status-item) yan yana dizer. */
+    flex-wrap: wrap;           /* Öğeler sığmazsa alt satıra kaydırır. */
+    margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır. */
+    font-size: 12px;           /* Yazı boyutunu 12 piksel yapar. */
 }
 
+/* Tek bir durum göstergesi öğesi (örn: yeşil nokta + CORRECT yazısı) (.status-item class'ına sahip span) */
 .status-item {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    margin-bottom: 5px;
-    color: #000; /* <<< RENK DEĞİŞTİ */
-    font-weight: bold; /* <<< BOLD istendi */
+    display: flex;             /* İçindeki nokta ve yazıyı yan yana dizer. */
+    align-items: center;       /* İçindeki nokta ve yazıyı dikeyde ortalar. */
+    margin-right: 15px;        /* Sağına 15 piksel dış boşluk bırakır (diğer durumlarla arasını açar). */
+    margin-bottom: 5px;        /* Altına 5 piksel dış boşluk bırakır (alt satıra kayarsa diye). */
+    color: #000;               /* Yazı rengini siyah yapar. */
+    font-weight: bold;         /* Yazıyı kalın yapar. */
 }
 
+/* Durum göstergesindeki renkli küçük daire (.status-circle class'ına sahip span) */
 .status-circle {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 5px;
-    flex-shrink: 0;
+    width: 10px;               /* Dairenin genişliği 10 piksel. */
+    height: 10px;              /* Dairenin yüksekliği 10 piksel. */
+    border-radius: 50%;        /* Köşeleri %50 yuvarlayarak tam daire yapar. */
+    margin-right: 5px;         /* Sağına 5 piksel dış boşluk bırakır (yazı ile arasını açar). */
+    flex-shrink: 0;            /* Esnek kutuda küçülmesini engeller. */
 }
 
-.correct-circle { background-color: #22c55e; }
-.review-circle { background-color: #FFC941; }
-.incorrect-circle { background-color: #ef4444; }
+/* Durum göstergelerindeki özel renkler */
+.correct-circle { background-color: #22c55e; } /* Doğru durum dairesini yeşil yapar. */
+.review-circle { background-color: #FFC941; } /* Review durum dairesini sarı yapar. */
+.incorrect-circle { background-color: #ef4444; } /* Yanlış durum dairesini kırmızı yapar. */
 
 
 /* === Soru Alanı === */
+/* Soru metni ve seçenekleri içeren ana sarmalayıcı (#question-wrapper ID'li div) */
 #question-wrapper {
-    margin-bottom: 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, border-color 0.3s;
+    margin-bottom: 20px;       /* Altına 20 piksel dış boşluk bırakır (butonlarla arasını açar). */
+    border-radius: 5px;        /* Köşeleri 5 piksel yuvarlar. */
+    transition: background-color 0.3s, border-color 0.3s; /* Arka plan ve kenarlık rengi değiştiğinde yumuşak geçiş efekti (artık kullanılmıyor). */
 }
 
+/* Soru metni ve seçeneklerin doğrudan içinde bulunduğu kutu (.question-area class'ına sahip div) */
 .question-area {
-    padding: 10px;
+    padding: 10px;             /* İçeriğine her yönden 10 piksel boşluk verir. */
 }
 
+/* Soru metnini ve sıra numarasını içeren bölüm (.question class'ına sahip div) */
 .question {
-    font-size: 16px;
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    font-size: 16px;           /* Varsayılan yazı boyutu 16 piksel. */
+    margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır (seçeneklerle arasını açar). */
+    display: flex;             /* İçeriği (sıra no, metin) esnek kutu olarak ayarlar. */
+    flex-direction: column;    /* İçeriği alt alta dizer. */
+    align-items: flex-start;   /* İçeriği sola hizalar. */
+    text-align: left;          /* Metni sola hizalar. */
 }
 
-/* Soru sıra numarası (Question X / Y) */
+/* Soru sıra numarası (Question X / Y) (.question içindeki ilk strong etiketi) */
 .question strong:first-child {
-    font-size: 14px; /* Boyut korundu */
-    color: #000; /* <<< RENK DEĞİŞTİ */
-    font-weight: bold; /* <<< BOLD istendi (strong zaten bold yapar) */
-    margin-bottom: 10px;
-    display: block;
+    font-size: 14px;           /* Yazı boyutunu 14 piksel yapar. */
+    color: #000;               /* Yazı rengini siyah yapar. */
+    font-weight: bold;         /* Yazıyı kalın yapar. */
+    margin-bottom: 10px;       /* Altına 10 piksel dış boşluk bırakır (soru metniyle arasını açar). */
+    display: block;            /* Elementin tüm satırı kaplamasını sağlar. */
 }
 
+/* Asıl soru metninin bulunduğu alan (.question-text class'ına sahip div) */
 .question-text {
-    font-weight: bold;
-    margin-top: 0;
-    line-height: 1.5;
-    width: 100%;
-    color: #000;
+    font-weight: bold;         /* Yazıyı kalın yapar. */
+    margin-top: 0;             /* Üstünde dış boşluk bırakmaz. */
+    line-height: 1.5;          /* Satırlar arasındaki boşluğu ayarlar (standart 1.5 katı). */
+    width: 100%;               /* Bulunduğu alanın tüm genişliğini kaplar. */
+    color: #000;               /* Yazı rengini siyah yapar. */
 }
 
+/* Sesli okuma ikonu (varsa) (.audio-icon class'ına sahip div) */
 .audio-icon {
-    font-size: 20px;
-    cursor: pointer;
-    display: none;
+    font-size: 20px;           /* İkon boyutunu ayarlar. */
+    cursor: pointer;           /* Fare üzerine gelince el işareti gösterir. */
+    display: none;             /* Elementi gizler (şimdilik görünmez). */
 }
 
 /* === Seçenekler === */
+/* Tüm seçenek kutularını içeren ana alan (.options class'ına sahip div) */
 .options {
-    margin-bottom: 10px;
-    text-align: left;
+    margin-bottom: 10px;       /* Altına 10 piksel dış boşluk bırakır. */
+    text-align: left;          /* İçeriği sola hizalar. */
 }
 
+/* Tek bir seçenek kutusu (.option class'ına sahip div) */
 .option {
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
+    padding: 12px 15px;        /* İçeriğine üst/alttan 12, sağ/soldan 15 piksel boşluk verir. */
+    border: 1px solid #ccc;    /* 1 piksel kalınlığında, gri renkte kenarlık ekler. */
+    border-radius: 5px;        /* Köşeleri 5 piksel yuvarlar. */
+    margin-bottom: 8px;        /* Altına 8 piksel dış boşluk bırakır (diğer seçenekle arasını açar). */
+    display: flex;             /* İçindeki radio/checkbox ve metni yan yana dizer. */
+    align-items: center;       /* İçindeki öğeleri dikeyde ortalar. */
+    cursor: pointer;           /* Fare üzerine gelince el işareti gösterir (tüm kutu tıklanabilir hissi verir). */
+    transition: background-color 0.2s, border-color 0.2s; /* Arka plan ve kenarlık rengi değiştiğinde yumuşak geçiş efekti. */
 }
+
+/* Fare, pasif olmayan bir seçeneğin üzerine geldiğinde (.option:hover:not(.disabled)) */
 .option:hover:not(.disabled) {
-    background-color: #f5f5f5;
-    border-color: #bbb;
+    background-color: #f5f5f5; /* Arka plan rengini çok açık gri yapar. */
+    border-color: #bbb;        /* Kenarlık rengini biraz daha koyu gri yapar. */
 }
+
+/* Pasif durumdaki (disabled) seçeneklerin metni (.option içindeki disabled input'tan sonra gelen label) */
 .option input[type="radio"]:disabled + label,
 .option input[type="checkbox"]:disabled + label {
-    cursor: default;
-    color: #666;
+    cursor: default;           /* Fare imlecini varsayılan ok şeklinde gösterir. */
+    color: #666;               /* Yazı rengini gri yapar. */
 }
+
+/* Pasif durumdaki (disabled) radyo düğmesi veya onay kutusu */
 .option input[type="radio"]:disabled,
 .option input[type="checkbox"]:disabled {
-    cursor: default;
+    cursor: default;           /* Fare imlecini varsayılan ok şeklinde gösterir. */
 }
+
+/* Pasif durumdaki seçeneğin tüm kutusu (.option class'ına ek olarak .disabled class'ı varsa) */
 .option.disabled {
-     cursor: default;
-     opacity: 0.7;
+     cursor: default;           /* Fare imlecini varsayılan ok şeklinde gösterir. */
+     opacity: 0.7;             /* Öğeyi biraz şeffaflaştırarak soluk görünmesini sağlar. */
 }
 
 
+/* Seçeneklerin içindeki radyo düğmesi ve onay kutusu */
 .option input[type="radio"],
 .option input[type="checkbox"] {
-    margin-right: 12px;
-    vertical-align: middle;
-    cursor: pointer;
-    flex-shrink: 0;
-    width: 1.2em;
-    height: 1.2em;
-    accent-color: #015DC8;
+    margin-right: 12px;        /* Sağına 12 piksel dış boşluk bırakır (metinle arasını açar). */
+    vertical-align: middle;    /* Dikeyde ortalanmasına yardımcı olur. */
+    cursor: pointer;           /* Fare üzerine gelince el işareti gösterir. */
+    flex-shrink: 0;            /* Esnek kutu içinde boyutunun küçülmesini engeller. */
+    width: 1.2em;              /* Genişliğini yazı boyutunun 1.2 katı yapar. */
+    height: 1.2em;             /* Yüksekliğini yazı boyutunun 1.2 katı yapar. */
+    accent-color: #015DC8;     /* Seçildiğinde içindeki nokta/tik/arka plan rengini mavi yapar. */
 }
 
+/* Seçeneğin metnini içeren label etiketi */
 .option label {
-    vertical-align: middle;
-    cursor: pointer;
-    flex-grow: 1;
-    line-height: 1.4;
-    color: #000;
+    vertical-align: middle;    /* Dikeyde ortalanmasına yardımcı olur. */
+    cursor: pointer;           /* Fare üzerine gelince el işareti gösterir (metne tıklayınca da seçilir). */
+    flex-grow: 1;              /* Esnek kutuda kalan tüm boşluğu doldurur. */
+    line-height: 1.4;          /* Satırlar arası boşluğu ayarlar. */
+    color: #000;               /* Yazı rengini siyah yapar. */
 }
 
-/* Seçim anında geri bildirim (Arka Plan) */
+/* Kullanıcı tarafından seçilmiş olan seçenek (.option class'ına ek olarak .selected class'ı varsa) */
 .option.selected {
-  background-color: #e0f2fe;
-  border-color: #0ea5e9;
+  background-color: #e0f2fe; /* Arka plan rengini açık mavi yapar. */
+  border-color: #0ea5e9;     /* Kenarlık rengini biraz daha belirgin mavi yapar. */
 }
 
-/* CHECK sonrası seçenek stilleri */
+/* CHECK sonrası doğru olarak işaretlenen seçenek (.option class'ına ek olarak .marked-correct class'ı varsa) */
 .option.marked-correct {
-  background-color: #95D195;
-  border-color: #66BB6A;
-  color: #000;
-  font-weight: bold;
+  background-color: #95D195; /* Arka plan rengini açık yeşil yapar. */
+  border-color: #66BB6A;     /* Kenarlık rengini biraz daha koyu yeşil yapar. */
+  color: #000;              /* Yazı rengini siyah yapar. */
+  font-weight: bold;         /* Yazıyı kalın yapar. */
 }
 
+/* CHECK sonrası yanlış olarak işaretlenen seçenek (.option class'ına ek olarak .marked-incorrect class'ı varsa) */
 .option.marked-incorrect {
-  background-color: #FF9191;
-  border-color: #E57373;
-  color: #000;
+  background-color: #FF9191; /* Arka plan rengini açık kırmızı/pembe yapar. */
+  border-color: #E57373;     /* Kenarlık rengini biraz daha koyu kırmızı yapar. */
+  color: #000;              /* Yazı rengini siyah yapar. */
 }
+
+/* Yanlış işaretlenen seçeneğin sonuna eklenen çarpı işareti (.marked-incorrect içindeki label'dan sonra gelen ::after pseudo-element) */
 .option.marked-incorrect label::after {
-    content: ' ❌';
-    color: #ef4444;
-    font-weight: bold;
-    margin-left: 5px;
-    display: inline-block;
+    content: ' ❌';           /* İçerik olarak bir boşluk ve çarpı ikonu ekler. */
+    color: #ef4444;           /* İkonun rengini kırmızı yapar. */
+    font-weight: bold;         /* İkonu kalın yapar. */
+    margin-left: 5px;          /* Soluna 5 piksel boşluk bırakır (metinden ayırır). */
+    display: inline-block;     /* Düzgün hizalama için blok seviyesinde ama satır içinde davranmasını sağlar. */
 }
+
+/* Doğru işaretlenen seçeneğin sonuna eklenen tik işareti (.marked-correct içindeki label'dan sonra gelen ::after pseudo-element) */
 .option.marked-correct label::after {
-    content: ' ✔️';
-    color: #16a34a;
-    font-weight: bold;
-    margin-left: 5px;
-    display: inline-block;
+    content: ' ✔️';           /* İçerik olarak bir boşluk ve tik ikonu ekler. */
+    color: #16a34a;           /* İkonun rengini yeşil yapar. */
+    font-weight: bold;         /* İkonu kalın yapar. */
+    margin-left: 5px;          /* Soluna 5 piksel boşluk bırakır. */
+    display: inline-block;     /* Düzgün hizalama için. */
 }
 
 
 /* === Butonlar === */
+/* Tüm butonları içeren ana alan (.buttons class'ına sahip div) */
 .buttons {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
+    display: flex;             /* İçindeki butonları yan yana dizer. */
+    justify-content: space-between; /* Butonlar arasına boşluk bırakarak yayar. */
+    flex-wrap: wrap;           /* Butonlar sığmazsa alt satıra kaydırır. */
+    margin-top: 20px;          /* Üstüne 20 piksel dış boşluk bırakır. */
+    padding-top: 15px;         /* İçeriğinin üstüne 15 piksel boşluk ekler. */
+    border-top: 1px solid #eee;/* Üstüne 1 piksel kalınlığında, çok açık gri, düz bir çizgi ekler. */
 }
 
+/* Genel buton stilleri (tüm <button> etiketleri) */
 button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    margin: 5px;
-    transition: background-color 0.2s, opacity 0.2s;
-    flex-grow: 1;
-    text-align: center;
-    min-width: 100px;
+    padding: 10px 15px;        /* İçeriğine üst/alt 10, sağ/sol 15 piksel boşluk verir. */
+    border: none;              /* Kenarlığı kaldırır. */
+    border-radius: 5px;        /* Köşeleri 5 piksel yuvarlar. */
+    color: white;              /* Yazı rengini beyaz yapar. */
+    cursor: pointer;           /* Fare üzerine gelince el işareti gösterir. */
+    font-size: 14px;           /* Yazı boyutunu 14 piksel yapar. */
+    font-weight: bold;         /* Yazıyı kalın yapar. */
+    margin: 5px;               /* Dışına her yönden 5 piksel boşluk bırakır. */
+    transition: background-color 0.2s, opacity 0.2s; /* Arka plan rengi ve şeffaflık değiştiğinde yumuşak geçiş efekti. */
+    flex-grow: 1;              /* Esnek kutuda büyümeye izin verir (küçük ekranda tüm satırı kaplayabilir). */
+    text-align: center;        /* İçindeki metni ortalar. */
+    min-width: 100px;          /* Minimum genişliği 100 piksel olarak ayarlar. */
 }
+
+/* Ekran genişliği 600 piksel ve üzerindeyken uygulanacak stil (@media sorgusu) */
 @media (min-width: 600px) {
     button {
-        flex-grow: 0;
+        flex-grow: 0;          /* Butonların otomatik büyümesini engeller (yan yana dururlar). */
     }
+     /* Belirli ID'lere sahip butonların minimum genişliği */
      button#previous, button#review, button#check-next-btn, button#finish {
-         min-width: 120px;
+         min-width: 120px;      /* Minimum genişliği 120 piksel yapar. */
      }
 }
 
 
+/* Fare, pasif olmayan bir butonun üzerine geldiğinde (button:hover:not(:disabled)) */
 button:hover:not(:disabled) {
-     opacity: 0.85;
+     opacity: 0.85;            /* Butonun şeffaflığını %85'e düşürür. */
 }
 
 
 /* Spesifik Buton Renkleri */
-button.previous { background-color: #6b7280; }
+button.previous { background-color: #6b7280; } /* Previous butonunun arka planını gri yapar. */
 button.review-btn {
-    background-color: #FFC941;
-    color: #000;
+    background-color: #FFC941; /* Review butonunun arka planını sarı yapar. */
+    color: #000;              /* Review butonunun yazı rengini siyah yapar. */
 }
-button.finish { background-color: #dc2626; }
+button.finish { background-color: #dc2626; } /* Finish butonunun arka planını kırmızı yapar. */
 
-/* Dinamik Buton için Renk Sınıfları */
+/* Dinamik Buton için Renk Sınıfları (CHECK veya NEXT durumuna göre) */
+/* CHECK modundayken (#check-next-btn ID'li buton .mode-check class'ı aldığında) */
 button#check-next-btn.mode-check {
-    background-color: #015DC8;
+    background-color: #015DC8; /* Arka planı mavi yapar. */
 }
+/* NEXT modundayken (#check-next-btn ID'li buton .mode-next class'ı aldığında) */
 button#check-next-btn.mode-next {
-    background-color: #16a34a;
+    background-color: #16a34a; /* Arka planı yeşil yapar. */
 }
 
 
-/* Devre dışı buton stili */
+/* Devre dışı bırakılmış buton stili (button:disabled) */
 button:disabled {
-    background-color: #d1d5db !important;
-    cursor: not-allowed;
-    opacity: 0.6;
+    background-color: #d1d5db !important; /* Arka plan rengini açık gri yapar (!important diğer stilleri ezer). */
+    cursor: not-allowed;       /* Fare imlecini "izin verilmiyor" şeklinde gösterir. */
+    opacity: 0.6;             /* Şeffaflığı azaltarak daha soluk ve pasif görünmesini sağlar. */
 }
 
 
 /* === Sonuç Alanı === */
+/* Test bittiğinde sonuçların gösterildiği alan (.result class'ına sahip div) */
 .result {
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-    background-color: #f0f0f0;
-    line-height: 1.6;
-    color: #000;
+    text-align: center;        /* İçeriği ortalar. */
+    padding: 20px;             /* İçeriğe her yönden 20 piksel boşluk verir. */
+    border-radius: 5px;        /* Köşeleri 5 piksel yuvarlar. */
+    margin-top: 20px;          /* Üstüne 20 piksel dış boşluk bırakır. */
+    background-color: #f0f0f0; /* Arka plan rengini açık gri yapar. */
+    line-height: 1.6;          /* Satırlar arası boşluğu artırır. */
+    color: #000;               /* Yazı rengini siyah yapar. */
 }
+
+/* Sonuç alanındaki başlık (h2 etiketi) */
 .result h2 {
-    margin-top: 0;
-    color: #000;
+    margin-top: 0;             /* Üst dış boşluğu sıfırlar. */
+    color: #000;               /* Başlık rengini siyah yapar. */
 }
+
+/* Sonuç alanındaki vurgulu metin (Geçti/Kaldı yazısı - strong etiketi) */
 .result strong {
-    font-size: 1.1em;
+    font-size: 1.1em;          /* Yazı boyutunu normalin 1.1 katı yapar. */
+    /* Renk JS tarafından atanıyor */
 }
+
+/* Sonuç alanındaki yatay çizgi (hr etiketi) */
 .result hr {
-    margin: 20px 0;
-    border: 0;
-    border-top: 1px solid #ccc;
+    margin: 20px 0;            /* Üstüne ve altına 20 piksel boşluk bırakır. */
+    border: 0;                 /* Varsayılan kenarlığı kaldırır. */
+    border-top: 1px solid #ccc;/* Üstüne 1 piksel kalınlığında, gri, düz bir çizgi ekler. */
 }
 
 
-/* Detaylı sonuçlar için stiller */
-.result-question { margin-bottom: 15px; padding: 10px; border-radius: 5px; text-align: left; border: 1px solid #ccc; color: #000; }
-.result-question.correct { background-color: #95D195; border-color: #66BB6A; }
-.result-question.incorrect { background-color: #FF9191; border-color: #E57373; }
-.result-question strong { display: block; margin-bottom: 8px; font-size: 1em; font-weight: bold; color: #000; }
-.result-options { margin-top: 8px; }
-.result-options .option { border: none; padding: 4px 0; background-color: transparent !important; cursor: default; margin-bottom: 4px; color: #000; }
-.result-options .option:hover { background-color: transparent !important; }
-.result-options label::after { display: none; }
-.user-answer { font-style: italic; color: #555; margin-left: 5px; }
-.correct-answer-text { font-weight: bold; color: #16a34a; display: block; margin-top: 5px; }
-.result-question .correct-answer-text[style*="color:#777"] { color: #555 !important; font-style: italic; }
+/* === Detaylı Sonuçlar İçin Stiller === */
+/* Sonuç alanında tek bir sorunun detayını gösteren kutu (.result-question class'ına sahip div) */
+.result-question {
+    margin-bottom: 15px;       /* Altına 15 piksel dış boşluk. */
+    padding: 10px;             /* İçine 10 piksel boşluk. */
+    border-radius: 5px;        /* Köşeleri yuvarlar. */
+    text-align: left;          /* Metni sola hizalar. */
+    border: 1px solid #ccc;    /* Varsayılan gri kenarlık. */
+    color: #000;               /* Yazı rengi siyah. */
+}
+
+/* Sonuçlarda doğru bilinen sorunun kutusu */
+.result-question.correct {
+    background-color: #95D195; /* Arka planı açık yeşil yapar. */
+    border-color: #66BB6A;     /* Kenarlığı biraz daha koyu yeşil yapar. */
+}
+
+/* Sonuçlarda yanlış bilinen sorunun kutusu */
+.result-question.incorrect {
+    background-color: #FF9191; /* Arka planı açık kırmızı yapar. */
+    border-color: #E57373;     /* Kenarlığı biraz daha koyu kırmızı yapar. */
+}
+
+/* Sonuçlardaki soru metni (strong etiketi) */
+.result-question strong {
+    display: block;            /* Tüm satırı kaplar. */
+    margin-bottom: 8px;        /* Altına 8 piksel boşluk. */
+    font-size: 1em;            /* Normal yazı boyutu. */
+    font-weight: bold;         /* Kalın yazı. */
+    color: #000;               /* Siyah renk. */
+}
+
+/* Sonuçlardaki seçeneklerin bulunduğu alan */
+.result-options {
+    margin-top: 8px;           /* Üstüne 8 piksel boşluk. */
+}
+
+/* Sonuçlardaki tek bir seçenek */
+.result-options .option {
+    border: none;              /* Kenarlık yok. */
+    padding: 4px 0;            /* Üst/alt 4 piksel boşluk. */
+    background-color: transparent !important; /* Arka planı tamamen şeffaf yapar. */
+    cursor: default;           /* Fare imleci normal ok. */
+    margin-bottom: 4px;        /* Altına 4 piksel boşluk. */
+    color: #000;               /* Yazı rengi siyah. */
+}
+
+/* Sonuçlardaki seçeneklerin üzerine gelince hover efektini kaldırır */
+.result-options .option:hover {
+    background-color: transparent !important; /* Arka plan şeffaf kalır. */
+}
+
+/* Sonuçlardaki seçenek metinlerinin sonundaki tik/çarpı işaretlerini gizler */
+.result-options label::after {
+    display: none;
+}
+
+/* Sonuçlarda kullanıcının seçimini belirten yazı */
+.user-answer {
+    font-style: italic;        /* Yazıyı italik yapar. */
+    color: #555;               /* Rengini koyu gri yapar. */
+    margin-left: 5px;          /* Soluna 5 piksel boşluk. */
+}
+
+/* Sonuçlarda doğru cevabı belirten yazı */
+.correct-answer-text {
+    font-weight: bold;         /* Yazıyı kalın yapar. */
+    color: #16a34a;           /* Rengini yeşil yapar. */
+    display: block;            /* Yeni bir satırda gösterir. */
+    margin-top: 5px;           /* Üstüne 5 piksel boşluk. */
+}
+
+/* Sonuçlarda "Boş Bırakıldı" metninin stili (JS'den gelen inline style'ı ezer) */
+.result-question .correct-answer-text[style*="color:#777"] {
+    color: #555 !important;    /* Rengini daha belirgin gri yapar. */
+    font-style: italic;        /* Yazıyı italik yapar. */
+}
