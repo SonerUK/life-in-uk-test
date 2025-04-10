@@ -134,7 +134,7 @@ let selectedAnswers = [];
 const questionNumbersDiv = document.querySelector(".question-numbers");
 const questionAreaDiv = document.querySelector(".question-area");
 const previousButton = document.getElementById("previous");
-const reviewButton = document.getElementById("review");
+const checkButton = document.getElementById("check");
 const nextButton = document.getElementById("next");
 
 function displayQuestion() {
@@ -201,10 +201,6 @@ function updateNumberDivs() {
 }
 
 function handleNext() {
-    const selectedOption = document.querySelector("input[name='answer']:checked");
-    if (selectedOption) {
-        selectedAnswers[currentQuestion] = selectedOption.value;
-    }
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         displayQuestion();
@@ -235,4 +231,4 @@ displayQuestion();
 
 nextButton.addEventListener("click", handleNext);
 previousButton.addEventListener("click", handlePrevious);
-reviewButton.addEventListener("click", handleCheck); // "Check" butonuna basıldığında handleCheck fonksiyonunu çalıştır
+checkButton.addEventListener("click", handleCheck); // "Check" butonuna basıldığında handleCheck fonksiyonunu çalıştır
