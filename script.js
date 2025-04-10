@@ -1,6 +1,5 @@
-// --- SORULAR (Aynı kalabilir, state eklendi) ---
+// --- SORULAR (Her soruya status, userSelection, checked eklenmiş) ---
 const questions = [
-    // ... (Önceki kodda olduğu gibi, her soruya status: 'unanswered', userSelection: null eklenmiş haliyle)
     {
         question: "What are two responsibilities that you will have as a British citizen or permanent resident of the UK?",
         options: [
@@ -10,7 +9,7 @@ const questions = [
             "To promote work in your local community"
         ],
         answer: ["To look after the area in which you live and the environment", "To look after yourself and your family"],
-        status: 'unanswered', userSelection: null, checked: false // checked: Kontrol edilip edilmediğini tutar
+        status: 'unanswered', userSelection: null, checked: false
     },
      {
         question: "Where is Big Ben located?",
@@ -155,39 +154,40 @@ const questions = [
 // --- DEĞİŞKENLER ---
 let currentQuestion = 0;
 let timerInterval = null;
-let timeRemaining = 45 * 60;
-const passingScore = 18;
+let timeRemaining = 45 * 60; // Saniye cinsinden (45 dakika)
+const passingScore = 18; // Geçme notu (örnek: 24 soruda 18 doğru)
 
 // --- DOM ELEMENTLERİ ---
 const questionNumbersDiv = document.querySelector(".question-numbers");
-const questionWrapperDiv = document.getElementById("question-wrapper"); // Yeni sarmalayıcı
+const questionWrapperDiv = document.getElementById("question-wrapper");
 const questionAreaDiv = document.querySelector(".question-area");
 const previousButton = document.getElementById("previous");
 const reviewButton = document.getElementById("review");
-const checkButton = document.getElementById("check");     // Yeni buton
-const nextButton = document.getElementById("next");
+const checkNextButton = document.getElementById("check-next-btn"); // Dinamik buton
 const finishButton = document.getElementById("finish");
 const resultDiv = document.getElementById("result");
 const timeLimitDiv = document.getElementById("time-limit");
 
 // --- FONKSİYONLAR ---
 
-function startTimer() { /* Önceki kodla aynı */
-    updateTimerDisplay();
+/** Zamanlayıcıyı Başlatır */
+function startTimer() {
+    updateTimerDisplay(); // Başlangıç değerini göster
     timerInterval = setInterval(() => {
         timeRemaining--;
         updateTimerDisplay();
         if (timeRemaining <= 0) {
-            finishQuiz();
+            finishQuiz(); // Süre dolduysa bitir
         }
-    }, 1000);
+    }, 1000); // Her saniyede bir çalıştır
 }
 
-function updateTimerDisplay() { /* Önceki kodla aynı */
+/** Zamanlayıcı Ekranını Günceller (MM:SS Formatında) */
+function updateTimerDisplay() {
     const minutes = Math.floor(timeRemaining / 60);
     const seconds = timeRemaining % 60;
     timeLimitDiv.textContent = `Kalan Süre: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-     if (timeRemaining < 60 && timeRemaining > 0) {
+     if (timeRemaining < 60 && timeRemaining > 0) { // Son 1 dakika kala rengi değiştir
         timeLimitDiv.style.color = 'red';
         timeLimitDiv.style.fontWeight = 'bold';
     } else if (timeRemaining > 0) {
@@ -200,145 +200,63 @@ function updateTimerDisplay() { /* Önceki kodla aynı */
      }
 }
 
-
-/** Mevcut Soruyu Ekranda Gösterir ve Gerekli Event Listenerları Ekler */
-function displayQuestion() {
-    // Önceki soruya ait CHECK sonrası geri bildirimleri temizle
-    clearFeedback();
-
-    const question = questions[currentQuestion];
-    const isMultiAnswer = Array.isArray(question.answer);
-    const inputType = isMultiAnswer ? 'checkbox' : 'radio';
-
-    let optionsHTML = question.options.map((option, index) => {
-        const inputId = `option_${currentQuestion}_${index}`;
-        // Seçili durumu kontrol et (userSelection'a göre)
-         let isChecked = false;
-         if (question.userSelection) {
-             isChecked = isMultiAnswer
-                 ? question.userSelection.includes(option)
-                 : question.userSelection === option;
-         }
-
-        // '.selected' class'ını da userSelection'a göre ekle
-        const selectedClass = isChecked ? 'selected' : '';
-
-        return `
-            <div class="option ${selectedClass}">
-                <input type="${inputType}" name="answer_${currentQuestion}" id="${inputId}" value="${option}" ${isChecked ? 'checked' : ''}>
-                <label for="${inputId}">${option}</label>
-            </div>
-        `;
-    }).join('');
-
-    questionAreaDiv.innerHTML = `
-        <div class="question">
-            <strong>Soru ${currentQuestion + 1} / ${questions.length}</strong>
-            <div class="question-text"><strong>${question.question}</strong></div>
-            <div class="audio-icon"></div>
-        </div>
-        <div class="options">
-            ${optionsHTML}
-        </div>
-    `;
-
-    // Seçeneklere tıklama (change) olayını ekle (anında seçili gösterme)
-    const optionInputs = questionAreaDiv.querySelectorAll('.options input');
-    optionInputs.forEach(input => {
-        input.addEventListener('change', handleOptionChange);
-    });
-
-    // Eğer soru daha önce CHECK edilmişse, geri bildirimi tekrar göster
-    if (question.checked) {
-        showCheckFeedback();
-    }
-
-    updateButtonStates(); // Butonların aktif/pasif durumunu ayarla
-    updateNumberDivs();
-}
-
-
-/** Seçenek Seçildiğinde Çalışır (Anında Görsel Geri Bildirim) */
-function handleOptionChange(event) {
-     const currentOptionsContainer = event.target.closest('.options');
-     const allOptionDivs = currentOptionsContainer.querySelectorAll('.option');
-     const inputType = event.target.type;
-
-     // Önce tüm seçeneklerden 'selected' classını kaldır (radio için gerekli)
-     if (inputType === 'radio') {
-         allOptionDivs.forEach(div => div.classList.remove('selected'));
-     }
-
-     // Seçilen elemanın parent (.option) div'ine 'selected' classını ekle/kaldır
-     const parentDiv = event.target.closest('.option');
-     if (event.target.checked) {
-         parentDiv.classList.add('selected');
-     } else {
-         // Sadece checkbox için geçerli
-         parentDiv.classList.remove('selected');
-     }
-
-     // Cevabı state'e kaydet (implicit save on select)
-     storeCurrentAnswer();
-     // Seçim yapıldığında 'answered' durumuna geç (eğer 'review' değilse)
-     if (questions[currentQuestion].status !== 'review') {
-          questions[currentQuestion].status = 'answered';
-          updateNumberDivs(); // Numara rengini güncelle
-     }
-}
-
 /** CHECK Sonrası Görsel Geri Bildirimleri Temizler */
 function clearFeedback() {
     questionWrapperDiv.classList.remove('correct-answer', 'incorrect-answer');
     const optionDivs = questionAreaDiv.querySelectorAll('.option');
     optionDivs.forEach(div => {
         div.classList.remove('marked-correct', 'marked-incorrect');
+        // div.classList.remove('selected'); // Seçili kalmasını sağlayabiliriz, kullanıcı ne seçtiğini görsün
     });
 }
 
-
 /** Soru Numaralarını Oluşturur ve Tıklama Olaylarını Ekler */
-function displayQuestionNumbers() { /* Önceki kodla büyük ölçüde aynı */
-    questionNumbersDiv.innerHTML = '';
+function displayQuestionNumbers() {
+    questionNumbersDiv.innerHTML = ''; // Önce temizle
     questions.forEach((question, index) => {
         const numberDiv = document.createElement("div");
         numberDiv.classList.add("number");
         numberDiv.textContent = index + 1;
-        numberDiv.dataset.index = index;
+        numberDiv.dataset.index = index; // Index bilgisini sakla
 
         numberDiv.addEventListener("click", () => {
-            // storeCurrentAnswer(); // Gidilen soruya tıklayınca kaydetme yapmayalım, karışıklık olabilir
-            currentQuestion = index;
-            displayQuestion();
+            // Numaraya tıklayınca o soruya git (eğer check edilmediyse)
+             if (!questions[currentQuestion].checked || checkNextButton.dataset.mode === 'next') { // Ya check edilmemişse ya da next modundaysa geçebilir
+                // Belki burada da storeCurrentAnswer çağrılmalı? Teste göre karar verilebilir.
+                currentQuestion = index;
+                displayQuestion();
+            } else {
+                 // Check edilmiş ve henüz Next'e basılmamışsa geçişi engelle
+                 console.log("Lütfen mevcut soruyu tamamlamak için NEXT'e basın.");
+            }
         });
         questionNumbersDiv.appendChild(numberDiv);
     });
-    updateNumberDivs();
+    updateNumberDivs(); // İlk yüklemede numaraların durumunu ayarla
 }
 
-/** Soru Numaralarının Görünümünü Günceller (Aktif, Cevaplandı, İncelenecek) */
-function updateNumberDivs() { /* Önceki kodla büyük ölçüde aynı, sadece .answered kaldırıldı */
+/** Soru Numaralarının Görünümünü Günceller (Aktif, İncelenecek) */
+function updateNumberDivs() {
     const numberDivs = document.querySelectorAll(".number");
     numberDivs.forEach((div, index) => {
         const question = questions[index];
-        div.classList.remove("active", "review"); // Temizle (answered kaldırıldı)
+        div.classList.remove("active", "review"); // Temizle
 
         if (index === currentQuestion) {
             div.classList.add("active");
         }
 
-        // Sadece review durumunu işaretle
         if (question.status === 'review') {
             div.classList.add("review");
         }
-        // Doğru/Yanlış durumu sadece test bitince gösterilecek
+        // Doğru/Yanlış durumu test bitince eklenebilir
     });
 }
 
 /** Mevcut Sorudaki Kullanıcı Seçimlerini State'e Kaydeder */
 function storeCurrentAnswer() {
     const question = questions[currentQuestion];
-    if (!question) return; // Ekstra kontrol
+    if (!question || question.checked) return; // Soru yoksa veya check edilmişse kaydetme
 
     const isMultiAnswer = Array.isArray(question.answer);
     const inputs = questionAreaDiv.querySelectorAll(`.options input[name="answer_${currentQuestion}"]:checked`);
@@ -349,69 +267,12 @@ function storeCurrentAnswer() {
         question.userSelection = inputs.length > 0 ? inputs[0].value : null;
     }
 
-    // Eğer seçim yapıldıysa ve status review değilse, answered yap
-    // Eğer seçim kaldırıldıysa (checkbox) ve status review değilse unanswered yap
+    // Seçim durumu status'u etkiler (eğer review değilse)
     if (question.status !== 'review') {
          const hasSelection = isMultiAnswer ? question.userSelection.length > 0 : question.userSelection !== null;
          question.status = hasSelection ? 'answered' : 'unanswered';
     }
-
-    // console.log(`Soru ${currentQuestion + 1} kaydedildi:`, question.userSelection, "Status:", question.status);
 }
-
-
-/** Sonraki Soruya Geçer */
-function handleNext() {
-    // storeCurrentAnswer(); // DisplayQuestion başında temizlik yaptığı için burada kaydetmeye gerek yok gibi, ama garanti olsun.
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        displayQuestion();
-    }
-}
-
-/** Önceki Soruya Geçer */
-function handlePrevious() {
-    // storeCurrentAnswer(); // DisplayQuestion başında temizlik yaptığı için burada kaydetmeye gerek yok gibi
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        displayQuestion();
-    }
-}
-
-/** Soruyu "Sonra Bak" Olarak İşaretler VE Sonraki Soruya Geçer */
-function handleReview() {
-    const question = questions[currentQuestion];
-    question.status = 'review';
-    // storeCurrentAnswer(); // Review'a basınca o anki seçimi de saklayalım
-    updateNumberDivs(); // Numarayı sarı yap
-
-    // Sonraki soruya geç
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        displayQuestion();
-    } else {
-        // Son sorudaysa, sadece işaretle, geçiş yapma
-         displayQuestion(); // Buton durumlarını güncellemek için
-    }
-}
-
-/** Mevcut Sorunun Cevabını Kontrol Eder ve Geri Bildirim Verir */
-function handleCheck() {
-    storeCurrentAnswer(); // En güncel seçimi al
-    const question = questions[currentQuestion];
-
-    // Eğer hiç seçim yapılmadıysa uyarı verilebilir (isteğe bağlı)
-    const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
-    if (!hasSelection) {
-        alert("Lütfen bir cevap seçiniz.");
-        return;
-    }
-
-    question.checked = true; // Bu sorunun kontrol edildiğini işaretle
-    showCheckFeedback(); // Görsel geri bildirimi göster
-    updateButtonStates(); // Check ve Review butonlarını devre dışı bırak
-}
-
 
 /** Check Sonrası Görsel Geri Bildirimi Uygular */
 function showCheckFeedback() {
@@ -439,7 +300,10 @@ function showCheckFeedback() {
      optionDivs.forEach(div => {
          const input = div.querySelector('input');
          const optionValue = input.value;
-         const isSelected = input.checked; // Veya userSelection'dan kontrol edilebilir
+         let isSelected = false; // userSelection'dan kontrol et
+          if(userSelection){
+               isSelected = isMultiAnswer ? userSelection.includes(optionValue) : userSelection === optionValue;
+          }
 
          let isThisOptionCorrect = false;
          if (isMultiAnswer) {
@@ -459,16 +323,214 @@ function showCheckFeedback() {
 }
 
 
+/** Mevcut Soruyu Ekranda Gösterir ve Gerekli Ayarları Yapar */
+function displayQuestion() {
+    clearFeedback(); // Önceki CHECK geri bildirimini temizle
+
+    const question = questions[currentQuestion];
+    if (!question) return;
+
+    // Butonu CHECK moduna resetle (gerekli kontrollerle)
+    resetCheckNextButton();
+
+    const isMultiAnswer = Array.isArray(question.answer);
+    const inputType = isMultiAnswer ? 'checkbox' : 'radio';
+
+    let optionsHTML = question.options.map((option, index) => {
+        const inputId = `option_${currentQuestion}_${index}`;
+        let isChecked = false;
+        if (question.userSelection) {
+            isChecked = isMultiAnswer
+                ? question.userSelection.includes(option)
+                : question.userSelection === option;
+        }
+        // Seçili kalma durumu (selected class'ı)
+        const selectedClass = isChecked ? 'selected' : '';
+        // Kontrol edilmişse seçenekleri pasif yapma durumu
+        const disabledAttr = question.checked ? 'disabled' : '';
+
+        return `
+            <div class="option ${selectedClass} ${question.checked ? 'disabled' : ''}">
+                <input type="${inputType}" name="answer_${currentQuestion}" id="${inputId}" value="${option}" ${isChecked ? 'checked' : ''} ${disabledAttr}>
+                <label for="${inputId}">${option}</label>
+            </div>
+        `;
+    }).join('');
+
+    questionAreaDiv.innerHTML = `
+        <div class="question">
+            <strong>Soru ${currentQuestion + 1} / ${questions.length}</strong>
+            <div class="question-text"><strong>${question.question}</strong></div>
+            <div class="audio-icon"></div>
+        </div>
+        <div class="options">
+            ${optionsHTML}
+        </div>
+    `;
+
+    // Seçeneklere tıklama olayını ekle (sadece check edilmemişse)
+    if (!question.checked) {
+        const optionInputs = questionAreaDiv.querySelectorAll('.options input');
+        optionInputs.forEach(input => {
+            input.addEventListener('change', handleOptionChange);
+        });
+    }
+
+    // Eğer soru daha önce CHECK edilmişse, geri bildirimi ve buton durumunu ayarla
+    if (question.checked) {
+        showCheckFeedback();
+        setButtonToNextMode(checkNextButton); // Butonu NEXT moduna getir
+        // Previous ve Review butonlarının durumu setButtonToNextMode içinde ayarlandı
+    } else {
+        // Soru check edilmemişse buton durumlarını normal ayarla
+        updateButtonStates();
+    }
+
+    updateNumberDivs();
+}
+
+
+/** Seçenek Seçildiğinde/Değiştirildiğinde Çalışır */
+function handleOptionChange(event) {
+     const currentOptionsContainer = event.target.closest('.options');
+     const allOptionDivs = currentOptionsContainer.querySelectorAll('.option');
+     const inputType = event.target.type;
+
+     if (inputType === 'radio') {
+         allOptionDivs.forEach(div => div.classList.remove('selected'));
+     }
+     const parentDiv = event.target.closest('.option');
+     if (event.target.checked) {
+         parentDiv.classList.add('selected');
+     } else {
+         parentDiv.classList.remove('selected');
+     }
+
+     storeCurrentAnswer(); // Seçimi kaydet
+     updateButtonStates(); // CHECK butonunu etkinleştir/devre dışı bırak
+     // Numaraları güncellemeye gerek yok, storeAnswer status'u güncelliyor
+}
+
+/** CHECK/NEXT Butonunu Başlangıç (CHECK) Moduna Döndürür */
+function resetCheckNextButton() {
+    checkNextButton.textContent = "CHECK";
+    checkNextButton.dataset.mode = "check";
+    checkNextButton.classList.remove('mode-next'); // Yeşil class'ı kaldır
+    checkNextButton.classList.add('mode-check');   // Mavi class'ı ekle
+    finishButton.style.display = 'none'; // Finish butonunu gizle
+    checkNextButton.style.display = 'inline-block'; // Check/Next butonunu göster
+    updateButtonStates(); // Diğer butonların ve kendisinin durumunu ayarla
+}
+
+/** Butonu NEXT Moduna Ayarlar ve İlgili Buton Durumlarını Günceller */
+function setButtonToNextMode(button) {
+    button.textContent = "NEXT";
+    button.dataset.mode = "next";
+    button.classList.remove('mode-check');
+    button.classList.add('mode-next');
+    button.disabled = false; // NEXT modu her zaman aktif
+
+    // Son sorudaysa NEXT yerine FINISH göster
+    if (currentQuestion === questions.length - 1) {
+        button.style.display = 'none'; // NEXT'i gizle
+        finishButton.style.display = 'inline-block'; // FINISH'i göster
+        finishButton.disabled = false;
+    } else {
+         button.style.display = 'inline-block';
+         finishButton.style.display = 'none';
+    }
+
+    // Check sonrası PREVIOUS ve REVIEW'u pasifleştir
+    // (Kullanıcı geri dönüp bakamasın diye - isteğe bağlı)
+    previousButton.disabled = true;
+    reviewButton.disabled = true;
+}
+
+
+/** CHECK veya NEXT Butonuna Tıklandığında Çalışır */
+function handleCheckOrNext() {
+    const mode = checkNextButton.dataset.mode;
+    const question = questions[currentQuestion];
+
+    if (mode === "check") {
+        // --- CHECK Modu ---
+        storeCurrentAnswer(); // En güncel seçimi al
+
+        const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
+        if (!hasSelection) {
+            alert("Lütfen bir cevap seçiniz.");
+            return;
+        }
+
+        question.checked = true; // Soruyu kontrol edildi olarak işaretle
+        showCheckFeedback(); // Görsel geri bildirimi göster
+
+        // Seçenekleri (inputları) devre dışı bırak
+        const optionInputs = questionAreaDiv.querySelectorAll('.options input');
+        optionInputs.forEach(input => input.disabled = true);
+        // Seçenek div'lerine de disabled class'ı ekleyebiliriz (CSS ile stil vermek için)
+         questionAreaDiv.querySelectorAll('.options .option').forEach(div => div.classList.add('disabled'));
+
+
+        // Butonu NEXT moduna geçir (bu fonksiyon buton durumlarını da ayarlar)
+        setButtonToNextMode(checkNextButton);
+
+    } else if (mode === "next") {
+        // --- NEXT Modu ---
+        // Sonraki soruya geç (eğer son soru değilse)
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            displayQuestion(); // Yeni soruyu göster (bu fonksiyon butonu resetleyecek)
+        } else {
+             // Bu durum normalde finishButton ile ele alınır
+             console.error("Son soruda NEXT butonuna basıldı, FINISH bekleniyordu.");
+             // Güvenlik önlemi olarak finish çağrılabilir
+             finishQuiz();
+        }
+    }
+}
+
+/** Soruyu İncelenecek Olarak İşaretler (Navigasyon Yok) */
+function handleReview() {
+    const question = questions[currentQuestion];
+    // Sadece check edilmemişse review yap
+    if (!question.checked) {
+        storeCurrentAnswer(); // O anki seçimi sakla (review'dan çıkınca kaybolmasın)
+        // Toggle review status
+        if (question.status === 'review') {
+             // Review'dan çıkarken durumu ayarla (seçim varsa answered, yoksa unanswered)
+              const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
+              question.status = hasSelection ? 'answered' : 'unanswered';
+        } else {
+              question.status = 'review';
+        }
+        updateNumberDivs(); // Numarayı güncelle
+    }
+}
+
+/** Önceki Soruya Gider */
+function handlePrevious() {
+    // Sadece check edilmemişse veya NEXT moduna geçilmemişse izin ver
+    if (!questions[currentQuestion].checked || checkNextButton.dataset.mode === 'next') {
+       if (currentQuestion > 0) {
+            currentQuestion--;
+            displayQuestion();
+        }
+    } else {
+         console.log("Önceki soruya gitmek için mevcut soruyu tamamlayın (NEXT).");
+    }
+}
+
 /** Testi Bitirir */
-function finishQuiz() { /* Önceki kodla büyük ölçüde aynı, sadece cevap kontrol mantığı zaten check ile yapıldığı için basitleşebilir veya aynı kalabilir */
-    clearInterval(timerInterval);
-    storeCurrentAnswer(); // Son soruyu kaydet
+function finishQuiz() {
+    clearInterval(timerInterval); // Zamanlayıcıyı durdur
+    // Son cevap zaten state'de olmalı
 
     let correctAnswersCount = 0;
-     // Sonuçları hesaplarken 'checked' durumuna bakmadan doğrudan userSelection ve answer karşılaştırılır
      questions.forEach(q => {
           let isCorrect = false;
           const isMulti = Array.isArray(q.answer);
+          // Doğru cevap kontrolü (öncekiyle aynı)
           if (isMulti) {
                if (q.userSelection && q.userSelection.length === q.answer.length) {
                     isCorrect = q.answer.every(ans => q.userSelection.includes(ans));
@@ -479,7 +541,7 @@ function finishQuiz() { /* Önceki kodla büyük ölçüde aynı, sadece cevap k
           if (isCorrect) correctAnswersCount++;
      });
 
-
+    // Sonuç mesajını oluştur
     let resultMessage = `<h2>Test Tamamlandı!</h2>`;
     resultMessage += `Toplam ${questions.length} sorudan ${correctAnswersCount} tanesini doğru cevapladınız.<br>`;
     const passed = correctAnswersCount >= passingScore;
@@ -487,9 +549,10 @@ function finishQuiz() { /* Önceki kodla büyük ölçüde aynı, sadece cevap k
         ? `<strong style="color:green;">Tebrikler, Testi GEÇTİNİZ!</strong>`
         : `<strong style="color:red;">Maalesef, Testi GEÇEMEDİNİZ. (Gerekli: ${passingScore} doğru)</strong>`;
 
-    // Detaylı sonuçları gösterme kısmı eklenebilir (önceki kodda vardı)
-    // resultDiv.innerHTML = resultMessage + '<hr>' + detailedResultsHTML;
-    resultDiv.innerHTML = resultMessage; // Şimdilik sadece özet
+    // İsteğe bağlı: Detaylı sonuçlar için HTML oluşturulup eklenebilir
+    // let detailedResultsHTML = '<h2>Detaylar:</h2>'; ...
+
+    resultDiv.innerHTML = resultMessage; // + detailedResultsHTML;
     resultDiv.style.display = "block";
 
     // Diğer elementleri gizle
@@ -500,30 +563,36 @@ function finishQuiz() { /* Önceki kodla büyük ölçüde aynı, sadece cevap k
 }
 
 
-/** Butonların Aktif/Pasif Durumlarını ve Görünürlüğünü Ayarlar */
+/** Butonların Aktif/Pasif Durumlarını Ayarlar */
 function updateButtonStates() {
     const question = questions[currentQuestion];
+    const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
 
-    previousButton.disabled = currentQuestion === 0;
-    nextButton.disabled = currentQuestion === questions.length - 1;
+    // Previous butonu (ilk soru değilse VE soru check edilmemişse/NEXT modunda değilse)
+    previousButton.disabled = currentQuestion === 0 || (question.checked && checkNextButton.dataset.mode !== 'next');
 
-    // CHECK ve REVIEW butonları, soru daha önce CHECK edilmemişse aktif olsun
-    checkButton.disabled = question.checked;
+    // Review butonu (soru check edilmemişse aktif)
     reviewButton.disabled = question.checked;
 
-    // Son sorudaysa NEXT'i gizle, FINISH'i göster
-    finishButton.style.display = currentQuestion === questions.length - 1 ? "inline-block" : "none";
-    nextButton.style.display = currentQuestion === questions.length - 1 ? "none" : "inline-block";
+    // Check/Next butonu
+    if (checkNextButton.dataset.mode === 'check') {
+        // CHECK modundaysa: Soru check edilmemişse VE seçim yapılmışsa aktif
+        checkNextButton.disabled = question.checked || !hasSelection;
+    } else {
+        // NEXT modundaysa: Her zaman aktif (setButtonToNextMode içinde ayarlanıyor)
+        checkNextButton.disabled = false;
+    }
+
+    // Finish butonu durumu setButtonToNextMode içinde ayarlanıyor
 }
 
 // --- BAŞLANGIÇ ---
 displayQuestionNumbers();
-displayQuestion(); // displayQuestion şimdi buton state'lerini de ayarlıyor
+displayQuestion();
 startTimer();
 
 // --- OLAY DİNLEYİCİLERİ ---
 previousButton.addEventListener("click", handlePrevious);
 reviewButton.addEventListener("click", handleReview);
-checkButton.addEventListener("click", handleCheck); // Yeni butonun listener'ı
-nextButton.addEventListener("click", handleNext);
-finishButton.addEventListener("click", finishQuiz);
+checkNextButton.addEventListener("click", handleCheckOrNext); // Tek butona tek listener
+finishButton.addEventListener("click", finishQuiz); // Finish butonu listener'ı
