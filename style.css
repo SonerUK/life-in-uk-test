@@ -23,7 +23,7 @@ body {
     font-weight: bold; /* <<< BOLD istendi */
     margin-bottom: 15px;
     text-align: left;
-    color: #cf2e2e; /* <<< RENK DEĞİŞTİ & BOLD */
+    color: #000; /* <<< RENK DEĞİŞTİ & BOLD */
 }
 
 /* === Soru Numaraları === */
@@ -90,7 +90,7 @@ body {
     align-items: center;
     margin-right: 15px;
     margin-bottom: 5px;
-    color: #cf2e2e; /* <<< RENK DEĞİŞTİ */
+    color: #000; /* <<< RENK DEĞİŞTİ */
     font-weight: bold; /* <<< BOLD istendi */
 }
 
@@ -130,7 +130,7 @@ body {
 /* Soru sıra numarası (Question X / Y) */
 .question strong:first-child {
     font-size: 14px; /* Boyut korundu */
-    color: #cf2e2e; /* <<< RENK DEĞİŞTİ */
+    color: #000; /* <<< RENK DEĞİŞTİ */
     font-weight: bold; /* <<< BOLD istendi (strong zaten bold yapar) */
     margin-bottom: 10px;
     display: block;
