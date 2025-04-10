@@ -3,14 +3,14 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #F8FAF5; /* <<< DEĞİŞTİ */
+    background-color: #F8FAF5;
 }
 
 .container {
     width: 800px;
     max-width: 95%;
     margin: 20px auto;
-    background-color: white; /* Ana kutu beyaz kaldı */
+    background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -53,32 +53,30 @@ body {
 }
 
 .number.active {
-    background-color: #015DC8; /* <<< DEĞİŞTİ */
+    background-color: #015DC8;
     color: white;
-    border-color: #014A9E; /* Aktif mavi için biraz koyu kenarlık */
+    border-color: #014A9E;
 }
 
-/* Soru numarası 'review' durumu */
 .number.review {
-  background-color: #FFC941; /* <<< DEĞİŞTİ */
-  color: #333; /* Sarı üzerine siyah daha okunaklı */
-  border-color: #E0B03A; /* Sarı için biraz koyu kenarlık */
+  background-color: #FFC941;
+  color: #333;
+  border-color: #E0B03A;
 }
 
-/* CHECK sonrası Doğru/Yanlış numara renkleri */
 .number.correct {
-  background-color: #22c55e; /* Koyu Yeşil kaldı */
+  background-color: #22c55e;
   color: white;
   border-color: #16a34a;
 }
 .number.incorrect {
-  background-color: #ef4444; /* Koyu Kırmızı kaldı */
+  background-color: #ef4444;
   color: white;
   border-color: #dc2626;
 }
 
 
-/* === Durum Göstergeleri (Sağ/Sol Üst) === */
+/* === Durum Göstergeleri === */
 .status {
     display: flex;
     flex-wrap: wrap;
@@ -101,33 +99,29 @@ body {
     flex-shrink: 0;
 }
 
-.correct-circle { background-color: #22c55e; } /* Koyu Yeşil kaldı */
-.review-circle { background-color: #FFC941; } /* <<< DEĞİŞTİ */
-.incorrect-circle { background-color: #ef4444; } /* Koyu Kırmızı kaldı */
+.correct-circle { background-color: #22c55e; }
+.review-circle { background-color: #FFC941; }
+.incorrect-circle { background-color: #ef4444; }
 
 
 /* === Soru Alanı === */
 #question-wrapper {
     margin-bottom: 20px;
     border-radius: 5px;
-    border: 1px solid transparent;
+    /* Arka plan rengi buradan kaldırıldı, sadece seçenekler renklenecek */
+    /* border: 1px solid transparent; - Kenarlık da kaldırıldı */
     transition: background-color 0.3s, border-color 0.3s;
 }
 
 .question-area {
-    padding: 10px;
+    padding: 10px; /* İç boşluk kaldı */
+    /* Arka plan ve kenarlık stilleri kaldırıldı */
 }
 
-/* CHECK sonrası soru alanı stilleri */
-#question-wrapper.correct-answer {
-  background-color: #95D195; /* <<< DEĞİŞTİ */
-  border-color: #66BB6A; /* Açık yeşil için biraz koyu kenarlık */
-}
+/* CHECK sonrası soru alanı stilleri KALDIRILDI */
+/* #question-wrapper.correct-answer { ... } */
+/* #question-wrapper.incorrect-answer { ... } */
 
-#question-wrapper.incorrect-answer {
-  background-color: #FF9191; /* <<< DEĞİŞTİ */
-  border-color: #E57373; /* Açık kırmızı için biraz koyu kenarlık */
-}
 
 .question {
     font-size: 16px;
@@ -150,7 +144,7 @@ body {
     margin-top: 0;
     line-height: 1.5;
     width: 100%;
-    color: #000000; /* Siyah */
+    color: #000000;
 }
 
 .audio-icon {
@@ -176,7 +170,7 @@ body {
     transition: background-color 0.2s, border-color 0.2s;
 }
 .option:hover:not(.disabled) {
-    background-color: #f5f5f5; /* Hover gri kaldı */
+    background-color: #f5f5f5;
     border-color: #bbb;
 }
 .option input[type="radio"]:disabled + label,
@@ -202,6 +196,7 @@ body {
     flex-shrink: 0;
     width: 1.2em;
     height: 1.2em;
+    accent-color: #015DC8; /* <<< SEÇİLİ KONTROL İÇ RENGİ MAVİ YAPAR */
 }
 
 .option label {
@@ -211,33 +206,33 @@ body {
     line-height: 1.4;
 }
 
-/* Seçim anında geri bildirim */
+/* Seçim anında geri bildirim (Arka Plan) */
 .option.selected {
-  background-color: #e0f2fe; /* Seçili açık mavi kaldı */
+  background-color: #e0f2fe;
   border-color: #0ea5e9;
 }
 
-/* CHECK sonrası seçenek stilleri */
+/* CHECK sonrası seçenek stilleri (Sadece seçeneklerin arka planı değişecek) */
 .option.marked-correct {
-  background-color: #95D195 !important; /* <<< DEĞİŞTİ */
-  border-color: #66BB6A !important; /* Açık yeşil için biraz koyu kenarlık */
+  background-color: #95D195 !important;
+  border-color: #66BB6A !important;
   font-weight: bold;
 }
 
 .option.marked-incorrect {
-  background-color: #FF9191 !important; /* <<< DEĞİŞTİ */
-  border-color: #E57373 !important; /* Açık kırmızı için biraz koyu kenarlık */
+  background-color: #FF9191 !important;
+  border-color: #E57373 !important;
 }
 .option.marked-incorrect label::after {
     content: ' ❌';
-    color: #ef4444; /* Koyu kırmızı ikon kaldı */
+    color: #ef4444;
     font-weight: bold;
     margin-left: 5px;
     display: inline-block;
 }
 .option.marked-correct label::after {
     content: ' ✔️';
-    color: #16a34a; /* Koyu yeşil ikon kaldı */
+    color: #16a34a;
     font-weight: bold;
     margin-left: 5px;
     display: inline-block;
@@ -284,25 +279,25 @@ button:hover:not(:disabled) {
 
 
 /* Spesifik Buton Renkleri */
-button.previous { background-color: #6b7280; } /* Gri kaldı */
+button.previous { background-color: #6b7280; }
 button.review-btn {
-    background-color: #FFC941; /* <<< DEĞİŞTİ */
-    color: #333; /* Sarı üzerine siyah yazı */
+    background-color: #FFC941;
+    color: #333;
 }
-button.finish { background-color: #dc2626; } /* Koyu kırmızı kaldı */
+button.finish { background-color: #dc2626; }
 
 /* Dinamik Buton için Renk Sınıfları */
 button#check-next-btn.mode-check {
-    background-color: #015DC8; /* <<< DEĞİŞTİ */
+    background-color: #015DC8;
 }
 button#check-next-btn.mode-next {
-    background-color: #16a34a; /* Koyu Yeşil kaldı */
+    background-color: #16a34a;
 }
 
 
 /* Devre dışı buton stili */
 button:disabled {
-    background-color: #d1d5db !important; /* Açık gri kaldı */
+    background-color: #d1d5db !important;
     cursor: not-allowed;
     opacity: 0.6;
 }
@@ -314,7 +309,7 @@ button:disabled {
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
-    background-color: #f0f0f0; /* Sonuç alanı gri kaldı (isteğe bağlı) */
+    background-color: #f0f0f0;
     line-height: 1.6;
 }
 .result h2 {
@@ -333,23 +328,12 @@ button:disabled {
 
 /* Detaylı sonuçlar için stiller */
 .result-question { margin-bottom: 15px; padding: 10px; border-radius: 5px; text-align: left; border: 1px solid #ccc; }
-.result-question.correct {
-    background-color: #95D195; /* <<< DEĞİŞTİ */
-    border-color: #66BB6A;
-}
-.result-question.incorrect {
-    background-color: #FF9191; /* <<< DEĞİŞTİ */
-    border-color: #E57373;
-}
+.result-question.correct { background-color: #95D195; border-color: #66BB6A; }
+.result-question.incorrect { background-color: #FF9191; border-color: #E57373; }
 .result-question strong { display: block; margin-bottom: 8px; font-size: 1em; font-weight: bold; }
 .result-options { margin-top: 8px; }
 .result-options .option { border: none; padding: 4px 0; background-color: transparent !important; cursor: default; margin-bottom: 4px; }
 .result-options .option:hover { background-color: transparent !important; }
 .result-options label::after { display: none; }
 .user-answer { font-style: italic; color: #555; margin-left: 5px; }
-.correct-answer-text {
-    font-weight: bold;
-    color: #16a34a; /* Koyu yeşil kaldı */
-    display: block;
-    margin-top: 5px;
-}
+.correct-answer-text { font-weight: bold; color: #16a34a; display: block; margin-top: 5px; }
