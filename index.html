@@ -4,17 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life in UK Test</title>
-    <link rel="stylesheet" href="style.css"> <!-- CSS dosyasını bağlıyoruz -->
+    <link rel="stylesheet" href="style.css"> <!-- CSS dosyasını bağla -->
 </head>
 <body>
-    <h1>Welcome to the Life in UK Test!</h1>
-    <p>This is the start of our website. Stay tuned for more features!</p>
+    <!-- Zaman Sayacı -->
+    <div id="zaman-sayaci">Zaman Limiti: <span id="zaman">44:53</span></div>
 
-    <!-- Soruların Gösterileceği Alan -->
-    <div id="question-container"></div>  <!-- Sorular buraya eklenecek -->
+    <!-- Soru Navigasyonu -->
+    <div id="soru-navigasyonu">
+        <button class="soru-numarasi aktif">1</button>
+        <button class="soru-numarasi">2</button>
+        <button class="soru-numarasi">3</button>
+        <!-- Sorular burada dinamik olarak eklenecek -->
+    </div>
 
-    <button onclick="showMessage()">Click Me</button> <!-- Önceki butonu koruyoruz -->
-    
-    <script src="script.js"></script> <!-- JavaScript dosyasını bağlıyoruz -->
+    <!-- Soru ve Cevaplar -->
+    <div id="soru-alani">
+        <p id="soru-metni">Soru 1: St George's günü ne zaman?</p>
+        <label><input type="radio" name="cevap" value="17 Mart"> 17 Mart</label><br>
+        <label><input type="radio" name="cevap" value="30 Kasım"> 30 Kasım</label><br>
+        <label><input type="radio" name="cevap" value="1 Mart"> 1 Mart</label><br>
+        <label><input type="radio" name="cevap" value="23 Nisan"> 23 Nisan</label><br>
+    </div>
+
+    <!-- Kontrol Düğmeleri -->
+    <div id="kontrol-dugmeleri">
+        <button id="onceki">Önceki</button>
+        <button id="gozden-gecir">Gözden Geçir</button>
+        <button id="kontrol-et">Kontrol Et</button>
+    </div>
+
+    <script src="script.js"></script> <!-- JavaScript dosyasını bağla -->
 </body>
 </html>
