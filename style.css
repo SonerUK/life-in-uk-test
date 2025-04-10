@@ -43,6 +43,16 @@ body {
     color: white;
 }
 
+.number.correct {
+    background-color: green;
+    color: white;
+}
+
+.number.incorrect {
+    background-color: red;
+    color: white;
+}
+
 .status {
     display: flex;
     justify-content: space-around;
