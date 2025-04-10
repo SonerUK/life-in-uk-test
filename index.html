@@ -1,42 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life in UK Test</title>
-    <link rel="stylesheet" href="style.css">
+    <title>British Citizenship Test</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <!-- Zaman Sayacı -->
-    <div id="zaman-sayaci">Time limit: <span id="zaman">44:53</span></div>
-
-    <!-- Soru Numaraları ve Durum Göstergeleri -->
-    <div id="soru-navigasyonu">
-        <div id="soru-numaralari"></div>
-        <div id="durum-gostergeleri">
-            <span>Correct</span> <span class="durum-kare" id="dogru"></span>
-            <span>Review</span> <span class="durum-kare" id="gozden-gecir"></span>
-            <span>Incorrect</span> <span class="durum-kare" id="yanlis"></span>
+    <div class="container">
+        <div class="time-limit">Time limit: 43:20</div>
+        <div class="question-numbers">
+            </div>
+        <div class="status">
+            <span class="correct">Correct</span>
+            <span class="review">Review</span>
+            <span class="incorrect">Incorrect</span>
+        </div>
+        <div class="question-area">
+            </div>
+        <div class="buttons">
+            <button class="previous" id="previous">Previous</button>
+            <button class="review" id="review">Review</button>
+            <button class="next" id="next">Next</button>
         </div>
     </div>
-
-    <!-- Soru ve Cevaplar -->
-    <div id="soru-alani">
-        <div id="soru-numarasi">Question 1 of 24</div>
-        <div id="soru-metni">When is St George's day?</div>
-        <div id="ses-simgesi">
-            <img src="sound-icon.png" alt="Sound Icon">
-        </div>
-        <div id="cevaplar"></div>
-    </div>
-
-    <!-- Butonlar -->
-    <div id="butonlar">
-        <button id="onceki" class="buton mavi">Previous</button>
-        <button id="gozden-gecir" class="buton sari">Review</button>
-        <button id="kontrol-et" class="buton mavi">Check</button>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
