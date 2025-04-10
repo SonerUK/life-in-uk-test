@@ -108,29 +108,29 @@ body {
     margin-right: 15px;        /* Sağına 15 piksel dış boşluk bırakır (diğer durumlarla arasını açar). */
     margin-bottom: 5px;        /* Altına 5 piksel dış boşluk bırakır (alt satıra kayarsa diye). */
     color: #000;               /* Yazı rengini siyah yapar. */
-    font-weight: bold;         /* Yazıyı kalın yapar. */
+    font-weight: normal;         /* Yazıyı normal  yapar. bold yapmaz */
 }
 
 /* Durum göstergesindeki renkli küçük daire (.status-circle class'ına sahip span) */
 .status-circle {
-    width: 10px;               /* Dairenin genişliği 10 piksel. */
-    height: 10px;              /* Dairenin yüksekliği 10 piksel. */
+    width: 12px;               /* Dairenin genişliği 12 piksel. */
+    height: 12px;              /* Dairenin yüksekliği 12 piksel. */
     border-radius: 50%;        /* Köşeleri %50 yuvarlayarak tam daire yapar. */
-    margin-right: 5px;         /* Sağına 5 piksel dış boşluk bırakır (yazı ile arasını açar). */
+    margin-right: 7px;         /* Sağına 5 piksel dış boşluk bırakır (yazı ile arasını açar). */
     flex-shrink: 0;            /* Esnek kutuda küçülmesini engeller. */
 }
 
 /* Durum göstergelerindeki özel renkler */
-.correct-circle { background-color: #22c55e; } /* Doğru durum dairesini yeşil yapar. */
+.correct-circle { background-color: rgb(149, 209, 149); } /* Doğru durum dairesini yeşil yapar. */
 .review-circle { background-color: #FFC941; } /* Review durum dairesini sarı yapar. */
-.incorrect-circle { background-color: #ef4444; } /* Yanlış durum dairesini kırmızı yapar. */
+.incorrect-circle { background-color: rgb(255, 145, 145); } /* Yanlış durum dairesini kırmızı yapar. */
 
 
 /* === Soru Alanı === */
 /* Soru metni ve seçenekleri içeren ana sarmalayıcı (#question-wrapper ID'li div) */
 #question-wrapper {
     margin-bottom: 20px;       /* Altına 20 piksel dış boşluk bırakır (butonlarla arasını açar). */
-    border-radius: 5px;        /* Köşeleri 5 piksel yuvarlar. */
+    border-radius: 7px;        /* Köşeleri 5 piksel yuvarlar. */
     transition: background-color 0.3s, border-color 0.3s; /* Arka plan ve kenarlık rengi değiştiğinde yumuşak geçiş efekti (artık kullanılmıyor). */
 }
 
@@ -142,7 +142,7 @@ body {
 /* Soru metnini ve sıra numarasını içeren bölüm (.question class'ına sahip div) */
 .question {
     font-size: 16px;           /* Varsayılan yazı boyutu 16 piksel. */
-    margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır (seçeneklerle arasını açar). */
+    margin-bottom: 10px;       /* Altına 15 piksel dış boşluk bırakır (seçeneklerle arasını açar). */
     display: flex;             /* İçeriği (sıra no, metin) esnek kutu olarak ayarlar. */
     flex-direction: column;    /* İçeriği alt alta dizer. */
     align-items: flex-start;   /* İçeriği sola hizalar. */
@@ -160,10 +160,12 @@ body {
 
 /* Asıl soru metninin bulunduğu alan (.question-text class'ına sahip div) */
 .question-text {
+    font-family: Arial, sans-serif;   /* Sayfadaki tüm metinler için varsayılan yazı tipi 'Arial' olarak ayarlandı. Eğer Arial bulunamazsa, tarayıcı benzer bir sans-serif font seçecektir. */ 
     font-weight: bold;         /* Yazıyı kalın yapar. */
-    margin-top: 0;             /* Üstünde dış boşluk bırakmaz. */
+    font-size: 18px;           /* Yazı boyutunu 14 piksel yapar. */
+    margin-top: 5px;           /* Üstünde dış boşluk bırakmaz. */
     line-height: 1.5;          /* Satırlar arasındaki boşluğu ayarlar (standart 1.5 katı). */
-    width: 100%;               /* Bulunduğu alanın tüm genişliğini kaplar. */
+    width: 90%;               /* Bulunduğu alanın tüm genişliğini kaplar. */
     color: #000;               /* Yazı rengini siyah yapar. */
 }
 
@@ -183,19 +185,19 @@ body {
 
 /* Tek bir seçenek kutusu (.option class'ına sahip div) */
 .option {
-    padding: 12px 15px;        /* İçeriğine üst/alttan 12, sağ/soldan 15 piksel boşluk verir. */
-    border: 1px solid #ccc;    /* 1 piksel kalınlığında, gri renkte kenarlık ekler. */
+    padding: 11px 15px;        /* İçeriğine üst/alttan 12, sağ/soldan 15 piksel boşluk verir. */
+    border: 1px solid #bbb;    /* 1 piksel kalınlığında, gri renkte kenarlık ekler. */
     border-radius: 5px;        /* Köşeleri 5 piksel yuvarlar. */
     margin-bottom: 8px;        /* Altına 8 piksel dış boşluk bırakır (diğer seçenekle arasını açar). */
     display: flex;             /* İçindeki radio/checkbox ve metni yan yana dizer. */
     align-items: center;       /* İçindeki öğeleri dikeyde ortalar. */
     cursor: pointer;           /* Fare üzerine gelince el işareti gösterir (tüm kutu tıklanabilir hissi verir). */
-    transition: background-color 0.2s, border-color 0.2s; /* Arka plan ve kenarlık rengi değiştiğinde yumuşak geçiş efekti. */
+    transition: background-color 0.1s, border-color 0.1s; /* Arka plan ve kenarlık rengi değiştiğinde yumuşak geçiş efekti. */
 }
 
 /* Fare, pasif olmayan bir seçeneğin üzerine geldiğinde (.option:hover:not(.disabled)) */
 .option:hover:not(.disabled) {
-    background-color: #f5f5f5; /* Arka plan rengini çok açık gri yapar. */
+    background-color: #015DC8; /* Arka plan rengini çok açık gri yapar. */
     border-color: #bbb;        /* Kenarlık rengini biraz daha koyu gri yapar. */
 }
 
