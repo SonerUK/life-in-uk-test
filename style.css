@@ -162,14 +162,22 @@ button.next {
     background-color: #f0f0f0;
 }
 
-.question::before { /* Yeni eklenen kısım */
+.question::before {
     content: "Question ";
 }
 
-.question::after { /* Yeni eklenen kısım */
+.question::after {
     content: " of 24";
 }
 
-.question strong { /* Yeni eklenen kısım */
+.question strong {
     font-weight: bold;
+}
+
+.option.correct { /* Yeni eklenen kısım */
+    background-color: #ccffcc; /* Açık yeşil */
+}
+
+.option.incorrect { /* Yeni eklenen kısım */
+    background-color: #ffcccc; /* Açık kırmızı */
 }
