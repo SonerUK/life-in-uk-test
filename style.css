@@ -30,7 +30,7 @@ body {
     width: 30px;
     height: 30px;
     border: 1px solid #ccc;
-    border-radius: 5px; /* Kare yerine yuvarlak */
+    border-radius: 50%; /* Kare yerine yuvarlak */
     margin: 5px;
     display: flex;
     justify-content: center;
