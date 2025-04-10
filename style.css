@@ -164,10 +164,25 @@ body {
     cursor: pointer;
     transition: background-color 0.2s, border-color 0.2s; /* Geçiş efekti */
 }
-.option:hover {
-    background-color: #f5f5f5; /* Hover efekti */
+.option:hover:not(.disabled) { /* Seçenek disable değilse hover efekti */
+    background-color: #f5f5f5;
     border-color: #bbb;
 }
+/* Check edildikten sonra seçeneklerin tıklanamaz görünmesi */
+.option input[type="radio"]:disabled + label,
+.option input[type="checkbox"]:disabled + label {
+    cursor: default;
+    color: #666; /* Rengi soluklaştır */
+}
+.option input[type="radio"]:disabled,
+.option input[type="checkbox"]:disabled {
+    cursor: default;
+}
+.option.disabled { /* İsteğe bağlı: Tüm option div'ine stil vermek için */
+     cursor: default;
+     opacity: 0.7;
+}
+
 
 .option input[type="radio"],
 .option input[type="checkbox"] {
@@ -218,7 +233,7 @@ body {
 /* Doğru cevabın yanına tik ekle (isteğe bağlı) */
 .option.marked-correct label::after {
     content: ' ✔️'; /* Veya ✅ */
-    color: #22c55e; /* Yeşil */
+    color: #16a34a; /* Yeşil */
     font-weight: bold;
     margin-left: 5px;
     display: inline-block;
@@ -254,6 +269,10 @@ button {
     button {
         flex-grow: 0; /* Yan yana durmaları için büyümeyi kaldır */
     }
+    /* Butonların genişliğini ayarlayabiliriz */
+     button#previous, button#review, button#check-next-btn, button#finish {
+         min-width: 120px; /* Biraz daha geniş */
+     }
 }
 
 
@@ -265,14 +284,20 @@ button:hover:not(:disabled) {
 /* Spesifik Buton Renkleri */
 button.previous { background-color: #6b7280; } /* Gri */
 button.review-btn { background-color: #f97316; } /* Turuncu */
-button.check-btn { background-color: #3b82f6; } /* Mavi */
-button.next { background-color: #16a34a; } /* Yeşil */
 button.finish { background-color: #dc2626; } /* Kırmızı */
+
+/* Dinamik Buton için Renk Sınıfları */
+button#check-next-btn.mode-check {
+    background-color: #3b82f6; /* Mavi (CHECK modu) */
+}
+button#check-next-btn.mode-next {
+    background-color: #16a34a; /* Yeşil (NEXT modu) */
+}
 
 
 /* Devre dışı buton stili */
 button:disabled {
-    background-color: #d1d5db; /* Açık Gri */
+    background-color: #d1d5db !important; /* Rengin üzerine yazmak için !important gerekebilir */
     cursor: not-allowed;
     opacity: 0.6; /* Daha belirgin pasiflik */
 }
@@ -301,7 +326,7 @@ button:disabled {
 }
 
 
-/* Detaylı sonuçlar için stiller */
+/* Detaylı sonuçlar için stiller (JS'de detaylı sonuçlar tekrar eklenirse kullanılır) */
 .result-question {
     margin-bottom: 15px;
     padding: 10px;
@@ -338,8 +363,9 @@ button:disabled {
      background-color: transparent !important; /* Hover efektini kaldır */
 }
 
+/* Sonuçlarda tik/çarpı işaretlerini gizle (JS'deki label::after'lar da kaldırılabilir) */
 .result-options label::after {
-    display: none; /* Sonuçlarda tik/çarpı işaretlerini gizle (isteğe bağlı) */
+    display: none;
 }
 
 .user-answer {
