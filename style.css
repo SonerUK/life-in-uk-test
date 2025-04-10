@@ -29,18 +29,17 @@ body {
 
 
 .number {
-    width: 20px;
-    height: 20px;
-    border: 5px solid #ccc;
-    border-radius: 50%; /* Kare yerine yuvarlak */
-    margin: 70px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ccc; /* Kenar çizgisini belirginleştirdik */
+    border-radius: 50%; /* Yuvarlak şekil */
+    margin: 5px;
     display: flex;
-    outline: 2px solid #ccc
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-sizing: content-box; /* Değiştirildi */
-    text-align: center;
+    box-sizing: border-box; /* Boyutlandırma sorununu çözdük */
+    text-align: center; /* Sayıyı ortaladık */
 }
 
 
