@@ -1,70 +1,104 @@
 // Sorular ve cevaplar
 let questions = [
     {
-        question: "What is the capital of the UK?",
-        choices: ["London", "Edinburgh", "Cardiff", "Belfast"],
-        correctAnswer: "London",
-        helpTextEnglish: "The capital of the United Kingdom is London.",
-        helpTextTurkish: "Birleşik Krallık'ın başkenti Londra'dır."
+        question: "St George's günü ne zaman?",
+        choices: ["17 Mart", "30 Kasım", "1 Mart", "23 Nisan"],
+        correctAnswer: "23 Nisan",
+        answer: ""
     },
     {
-        question: "Which country is NOT part of the UK?",
-        choices: ["Scotland", "Wales", "Ireland", "England"],
-        correctAnswer: "Ireland",
-        helpTextEnglish: "Ireland is not part of the United Kingdom.",
-        helpTextTurkish: "İrlanda, Birleşik Krallık'ın parçası değildir."
+        question: "Hangi ülke Birleşik Krallık'ın parçası değildir?",
+        choices: ["İskoçya", "Galler", "İrlanda", "İngiltere"],
+        correctAnswer: "İrlanda",
+        answer: ""
     }
-    // Buraya daha fazla soru ekleyebilirsiniz
+    // Daha fazla soru ekleyebilirsiniz
 ];
 
 let currentQuestionIndex = 0;
-let correctAnswers = 0; // Kullanıcının doğru cevap sayısını tutuyor
+let timer;  // Zaman sayacını yönetmek için
 
-// Fonksiyon: Soruları göster
+// Zaman sayacı fonksiyonu
+function startTimer() {
+    let timeLeft = 2700; // 45 dakika = 2700 saniye
+    timer = setInterval(function() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        document.getElementById('zaman').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timeLeft--;
+        
+        // Zaman bittiğinde testi bitir
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            alert('Zaman doldu!');
+            showResults();
+        }
+
+        // Zaman 5 dakikadan azsa, kırmızıya dönsün
+        if (timeLeft <= 300) {
+            document.getElementById('zaman-sayaci').style.color = 'red';
+        }
+    }, 1000);
+}
+
+// Soruları göster
 function showQuestion() {
     let question = questions[currentQuestionIndex];
-    let questionContainer = document.getElementById("question-container");
+    let questionContainer = document.getElementById('soru-alani');
     
-    // Soruyu ve cevapları ekle
     questionContainer.innerHTML = `
-        <h2>${question.question}</h2>
-        <ul>
-            ${question.choices.map((choice, index) => `
-                <li><button onclick="checkAnswer('${choice}')">${choice}</button></li>
-            `).join('')}
-        </ul>
-        <button onclick="showHelp()">Help</button>  <!-- Yardım Butonu -->
+        <p>${question.question}</p>
+        ${question.choices.map(choice => `
+            <label><input type="radio" name="cevap" value="${choice}" onclick="selectAnswer('${choice}')"> ${choice}</label><br>
+        `).join('')}
     `;
-}
-
-// Soruyu kontrol et
-function checkAnswer(selectedAnswer) {
-    let question = questions[currentQuestionIndex];
-    if (selectedAnswer === question.correctAnswer) {
-        correctAnswers++;  // Doğru cevap sayısını artır
-        alert("Correct!");
-    } else {
-        alert("Incorrect. Try again!");
-    }
     
-    // Sonraki soruya geç
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
+    // Soruları navigasyon kısmında da güncelle
+    let navButtons = document.querySelectorAll('.soru-numarasi');
+    navButtons.forEach((button, index) => {
+        button.classList.remove('aktif');
+        if (index === currentQuestionIndex) {
+            button.classList.add('aktif');
+        }
+    });
+}
+
+// Kullanıcı cevabını seçtiğinde
+function selectAnswer(selectedAnswer) {
+    questions[currentQuestionIndex].answer = selectedAnswer;
+}
+
+// Sonuçları göster
+function showResults() {
+    let correctAnswers = 0;
+    questions.forEach(q => {
+        if (q.answer === q.correctAnswer) {
+            correctAnswers++;
+        }
+    });
+    alert(`Test tamamlandı! Doğru cevaplar: ${correctAnswers} / ${questions.length}`);
+}
+
+// Kontrol et butonuna basıldığında
+document.getElementById('kontrol-et').addEventListener('click', function() {
+    showResults();
+});
+
+// Önceki soru için
+document.getElementById('onceki').addEventListener('click', function() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
         showQuestion();
-    } else {
-        alert(`Test complete! You got ${correctAnswers} out of ${questions.length} correct.`);
-        // Sonuçları localStorage'a kaydet
-        localStorage.setItem("lifeInUKTestResults", JSON.stringify({ correctAnswers }));
     }
-}
+});
 
-// Yardım butonuna tıklanıldığında açıklamayı göster
-function showHelp() {
-    let question = questions[currentQuestionIndex];
-    alert(`Help:\n\nEnglish: ${question.helpTextEnglish}\nTurkish: ${question.helpTextTurkish}`);
-}
+// Gözden geçirme için
+document.getElementById('gozden-gecir').addEventListener('click', function() {
+    // Gözden geçirme işlevselliği eklenebilir
+});
 
-// Sayfa yüklendiğinde ilk soruyu göster
+// Başlangıçta zamanı başlat
 window.onload = function() {
+    startTimer();
     showQuestion();
 };
