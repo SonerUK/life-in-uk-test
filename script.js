@@ -3,12 +3,16 @@ let questions = [
     {
         question: "What is the capital of the UK?",
         choices: ["London", "Edinburgh", "Cardiff", "Belfast"],
-        correctAnswer: "London"
+        correctAnswer: "London",
+        helpTextEnglish: "The capital of the United Kingdom is London.",
+        helpTextTurkish: "Birleşik Krallık'ın başkenti Londra'dır."
     },
     {
         question: "Which country is NOT part of the UK?",
         choices: ["Scotland", "Wales", "Ireland", "England"],
-        correctAnswer: "Ireland"
+        correctAnswer: "Ireland",
+        helpTextEnglish: "Ireland is not part of the United Kingdom.",
+        helpTextTurkish: "İrlanda, Birleşik Krallık'ın parçası değildir."
     }
     // Buraya daha fazla soru ekleyebilirsiniz
 ];
@@ -20,7 +24,7 @@ function showQuestion() {
     let question = questions[currentQuestionIndex];
     let questionContainer = document.getElementById("question-container");
     
-    // Soru metni
+    // Soruyu ve cevapları ekle
     questionContainer.innerHTML = `
         <h2>${question.question}</h2>
         <ul>
@@ -28,6 +32,7 @@ function showQuestion() {
                 <li><button onclick="checkAnswer('${choice}')">${choice}</button></li>
             `).join('')}
         </ul>
+        <button onclick="showHelp()">Help</button>  <!-- Yardım Butonu -->
     `;
 }
 
@@ -47,6 +52,12 @@ function checkAnswer(selectedAnswer) {
     } else {
         alert("Test complete! Well done.");
     }
+}
+
+// Yardım butonuna tıklanıldığında açıklamayı göster
+function showHelp() {
+    let question = questions[currentQuestionIndex];
+    alert(`Help:\n\nEnglish: ${question.helpTextEnglish}\nTurkish: ${question.helpTextTurkish}`);
 }
 
 // Sayfa yüklendiğinde ilk soruyu göster
