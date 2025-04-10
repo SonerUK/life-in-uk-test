@@ -179,3 +179,60 @@ button.next {
 .option.incorrect {
     background-color: #ffcccc;
 }
+
+
+/* Mevcut stillerin SONUNA ekleyin */
+
+.number.review {
+  background-color: orange; /* Zaten .review-circle ile aynı renk */
+  color: white;
+  border-color: darkorange; /* İsteğe bağlı: Kenarlığı biraz farklılaştırmak için */
+}
+
+/* Onay kutularının (checkbox) metinle daha iyi hizalanması için */
+.option input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle; /* Dikey hizalama */
+}
+
+.option label {
+    vertical-align: middle; /* Dikey hizalama */
+}
+
+/* Sonuç ekranında doğru/yanlış cevapları göstermek için stiller (Opsiyonel ama kullanışlı) */
+.result-question {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.result-question.correct {
+    background-color: #e0ffe0; /* Açık yeşil */
+    border: 1px solid green;
+}
+
+.result-question.incorrect {
+    background-color: #ffe0e0; /* Açık kırmızı */
+    border: 1px solid red;
+}
+
+.result-question strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.result-options .option {
+    border: none; /* Sonuç ekranında seçenek kenarlıklarını kaldır */
+    padding: 2px 0; /* Daha az dolgu */
+}
+
+.user-answer {
+    font-style: italic;
+    color: #555;
+}
+
+.correct-answer {
+    font-weight: bold;
+    color: green;
+}
