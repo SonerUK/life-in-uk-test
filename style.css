@@ -1,22 +1,39 @@
-/* Genel Sayfa Stili */
+/* Sayfa Arkaplanı ve Genel Tasarım */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #e9ecef;
+    color: #212529;
     margin: 0;
     padding: 0;
+    height: 100vh; /* Sayfanın tamamını kapsayacak şekilde */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Başlık Stili */
 h1 {
-    color: #4CAF50;
     text-align: center;
     margin-top: 50px;
+    font-size: 36px;
+    color: #007bff;
 }
 
-/* Paragraf Stili */
-p {
+/* Buton Stili */
+button {
+    background-color: red; /* Buton rengini kırmızı yapıyoruz */
+    color: white; /* Buton metni beyaz */
     font-size: 18px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 200px; /* Buton genişliği */
     text-align: center;
-    margin: 20px;
+}
+
+button:hover {
+    background-color: #c82333; /* Butona hover efekti */
 }
