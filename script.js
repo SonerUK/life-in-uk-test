@@ -149,13 +149,14 @@ const questions = [
         answer: "Lent",
         status: 'unanswered', userSelection: null, checked: false, isCorrect: null
     }
+
 ];
 
 // --- DEĞİŞKENLER ---
 let currentQuestion = 0;
 let timerInterval = null;
-let timeRemaining = 45 * 60; // Saniye cinsinden (45 dakika)
-const passingScore = 18; // Geçme notu
+let timeRemaining = 45 * 60;
+const passingScore = 18;
 
 // --- DOM ELEMENTLERİ ---
 const questionNumbersDiv = document.querySelector(".question-numbers");
@@ -163,7 +164,7 @@ const questionWrapperDiv = document.getElementById("question-wrapper");
 const questionAreaDiv = document.querySelector(".question-area");
 const previousButton = document.getElementById("previous");
 const reviewButton = document.getElementById("review");
-const checkNextButton = document.getElementById("check-next-btn"); // Dinamik buton
+const checkNextButton = document.getElementById("check-next-btn");
 const finishButton = document.getElementById("finish");
 const resultDiv = document.getElementById("result");
 const timeLimitDiv = document.getElementById("time-limit");
@@ -200,9 +201,9 @@ function updateTimerDisplay() {
      }
 }
 
-/** CHECK Sonrası Görsel Geri Bildirimleri Temizler */
+/** CHECK Sonrası Görsel Geri Bildirimleri Temizler (Wrapper class'ları kaldırıldı) */
 function clearFeedback() {
-    questionWrapperDiv.classList.remove('correct-answer', 'incorrect-answer');
+    // questionWrapperDiv.classList.remove('correct-answer', 'incorrect-answer'); // <<< BU SATIR KALDIRILDI
     const optionDivs = questionAreaDiv.querySelectorAll('.option');
     optionDivs.forEach(div => {
         div.classList.remove('marked-correct', 'marked-incorrect');
@@ -276,7 +277,7 @@ function storeCurrentAnswer() {
     }
 }
 
-/** Check Sonrası Görsel Geri Bildirimi Uygular */
+/** Check Sonrası Görsel Geri Bildirimi Uygular (Wrapper class'ları kaldırıldı) */
 function showCheckFeedback() {
      clearFeedback();
      const question = questions[currentQuestion];
@@ -284,8 +285,10 @@ function showCheckFeedback() {
      const correctAnswer = question.answer;
      const isMultiAnswer = Array.isArray(correctAnswer);
 
-     questionWrapperDiv.classList.add(question.isCorrect ? 'correct-answer' : 'incorrect-answer');
+     // Soru alanı arka planını ayarlayan satır kaldırıldı
+     // questionWrapperDiv.classList.add(question.isCorrect ? 'correct-answer' : 'incorrect-answer'); // <<< BU SATIR KALDIRILDI
 
+     // Seçenekleri işaretle (Bu kısım aynı kalıyor)
      const optionDivs = questionAreaDiv.querySelectorAll('.option');
      optionDivs.forEach(div => {
          const input = div.querySelector('input');
@@ -431,7 +434,6 @@ function handleCheckOrNext() {
     const question = questions[currentQuestion];
 
     if (mode === "check") {
-        // --- CHECK Modu ---
         storeCurrentAnswer();
 
         const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
@@ -457,7 +459,7 @@ function handleCheckOrNext() {
              question.status = 'answered';
         }
 
-        showCheckFeedback();
+        showCheckFeedback(); // Görsel geri bildirimi uygula (artık sadece seçenekleri renklendiriyor)
         updateNumberDivs();
 
         const optionInputs = questionAreaDiv.querySelectorAll('.options input');
@@ -467,13 +469,11 @@ function handleCheckOrNext() {
         setButtonToNextMode(checkNextButton);
 
     } else if (mode === "next") {
-        // --- NEXT Modu ---
         if (currentQuestion < questions.length - 1) {
             currentQuestion++;
             displayQuestion();
         } else {
              console.error("Son soruda NEXT butonuna basıldı.");
-             // Güvenlik önlemi
              finishQuiz();
         }
     }
@@ -502,83 +502,68 @@ function handlePrevious() {
             currentQuestion--;
             displayQuestion();
         }
-    } else {
-         // Check edilmişse gidemez (zaten buton disable)
     }
 }
 
 
 /** Testi Bitirir ve Detaylı Sonuçları Gösterir */
 function finishQuiz() {
-    clearInterval(timerInterval); // Zamanlayıcıyı durdur
+    clearInterval(timerInterval);
 
-    // Doğru cevap sayısını hesapla
     let correctAnswersCount = questions.filter(q => q.isCorrect === true).length;
 
-    // --- Detaylı Sonuçlar HTML'ini Oluştur ---
     let detailedResultsHTML = '<hr><h2>Detaylı Sonuçlar:</h2>';
     questions.forEach((q, index) => {
-        const isCorrect = q.isCorrect; // State'den al
-        const questionResultClass = ['result-question']; // CSS class
+        const isCorrect = q.isCorrect;
+        const questionResultClass = ['result-question'];
 
         if (isCorrect === true) {
             questionResultClass.push('correct');
-        } else if (q.checked) { // Sadece kontrol edilmiş yanlışları işaretle
+        } else if (q.checked) {
              questionResultClass.push('incorrect');
-        } else {
-             // Cevaplanmamışlar nötr kalır
         }
 
         detailedResultsHTML += `<div class="${questionResultClass.join(' ')}">`;
         detailedResultsHTML += `<strong>Soru ${index + 1}:</strong> ${q.question}<br>`;
 
-        // Seçenekleri ve işaretlemeleri göster
         detailedResultsHTML += `<div class="result-options"><strong>Seçenekler:</strong><br>`;
         q.options.forEach(opt => {
             let userSelectedThis = false;
             let isCorrectAnswer = false;
             const isMulti = Array.isArray(q.answer);
 
-            // Doğru cevap mı?
             if (isMulti) isCorrectAnswer = q.answer.includes(opt);
             else isCorrectAnswer = q.answer === opt;
 
-            // Kullanıcı seçmiş mi?
             if (q.userSelection){
                  if (Array.isArray(q.userSelection)) userSelectedThis = q.userSelection.includes(opt);
                  else userSelectedThis = q.userSelection === opt;
             }
 
-            detailedResultsHTML += `<div class="option">`; // Stil için option class'ını kullanabiliriz
-             // Görsel işaretçiler
-             if(isCorrectAnswer) detailedResultsHTML += `✅ `; // Doğruysa
-             else if (userSelectedThis && !isCorrectAnswer) detailedResultsHTML += `❌ `; // Kullanıcı seçti ama yanlışsa
-             else detailedResultsHTML += `➖ `; // Diğer (Doğru ama seçilmedi veya yanlış ve seçilmedi)
+            detailedResultsHTML += `<div class="option">`;
+             if(isCorrectAnswer) detailedResultsHTML += `✅ `;
+             else if (userSelectedThis && !isCorrectAnswer) detailedResultsHTML += `❌ `;
+             else detailedResultsHTML += `➖ `;
 
-             detailedResultsHTML += `${opt}`; // Seçenek metni
+             detailedResultsHTML += `${opt}`;
 
              if (userSelectedThis) detailedResultsHTML += ` <span class="user-answer">(Seçiminiz)</span>`;
 
-            detailedResultsHTML += `</div>`; // .option kapat
+            detailedResultsHTML += `</div>`;
         });
-        detailedResultsHTML += `</div>`; // .result-options kapat
+        detailedResultsHTML += `</div>`;
 
-         // Eğer yanlış cevaplandıysa veya boş bırakıldıysa doğru cevabı göster
-         if (isCorrect === false && q.checked) { // Sadece kontrol edilmiş yanlışlar için
+         if (isCorrect === false && q.checked) {
               let correctAnswerText = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
               detailedResultsHTML += `<div class="correct-answer-text"><strong>Doğru Cevap:</strong> ${correctAnswerText}</div>`;
-         } else if (!q.checked && q.userSelection === null) { // Boş bırakılanlar için
+         } else if (q.isCorrect === null && q.userSelection === null) { // Kontrol edilmedi ve seçim yoksa (boş)
              let correctAnswerText = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
-             detailedResultsHTML += `<div class="correct-answer-text"><strong>Doğru Cevap:</strong> ${correctAnswerText} (Boş Bırakıldı)</div>`;
+             detailedResultsHTML += `<div class="correct-answer-text" style="color:#777;"><strong>Doğru Cevap:</strong> ${correctAnswerText} (Boş Bırakıldı)</div>`;
          }
 
-
-        detailedResultsHTML += `</div>`; // .result-question kapat
+        detailedResultsHTML += `</div>`;
     });
-    // --- Detaylı Sonuçlar HTML Sonu ---
 
-
-    // Genel Sonuç Mesajı
     let resultMessage = `<h2>Test Tamamlandı!</h2>`;
     resultMessage += `Toplam ${questions.length} sorudan ${correctAnswersCount} tanesini doğru cevapladınız.<br>`;
     const passed = correctAnswersCount >= passingScore;
@@ -586,11 +571,9 @@ function finishQuiz() {
         ? `<strong style="color:green;">Tebrikler, Testi GEÇTİNİZ!</strong>`
         : `<strong style="color:red;">Maalesef, Testi GEÇEMEDİNİZ. (Gerekli: ${passingScore} doğru)</strong>`;
 
-    // Genel mesaj ve detayları birleştirip göster
     resultDiv.innerHTML = resultMessage + detailedResultsHTML;
     resultDiv.style.display = "block";
 
-    // Diğer elementleri gizle
     questionWrapperDiv.style.display = 'none';
     document.querySelector('.buttons').style.display = 'none';
     questionNumbersDiv.style.display = 'none';
@@ -602,15 +585,13 @@ function finishQuiz() {
 function updateButtonStates() {
     const question = questions[currentQuestion];
 
-    // Eğer soru check edilmişse, buton durumları setButtonToNextMode içinde ayarlanır
     if (!question.checked) {
         const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
 
         previousButton.disabled = currentQuestion === 0;
-        reviewButton.disabled = false; // Check edilmediği sürece aktif
-        checkNextButton.disabled = !hasSelection; // Seçim varsa aktif
+        reviewButton.disabled = false;
+        checkNextButton.disabled = !hasSelection;
 
-        // Butonun CHECK modunda olduğunu teyit et (resetCheckNextButton zaten yapar ama garanti)
         checkNextButton.dataset.mode = "check";
         checkNextButton.classList.remove('mode-next');
         checkNextButton.classList.add('mode-check');
@@ -633,4 +614,4 @@ startTimer();
 previousButton.addEventListener("click", handlePrevious);
 reviewButton.addEventListener("click", handleReview);
 checkNextButton.addEventListener("click", handleCheckOrNext);
-finishButton.addEventListener("click", finishQuiz); // Finish butonu listener'ı
+finishButton.addEventListener("click", finishQuiz);
