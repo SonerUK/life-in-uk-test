@@ -2,12 +2,7 @@
 const questions = [
     {
         question: "What are two responsibilities that you will have as a British citizen or permanent resident of the UK?",
-        options: [
-            "To look after the area in which you live and the environment",
-            "To look after yourself and your family",
-            "To stay in the UK forever",
-            "To promote work in your local community"
-        ],
+        options: [ "To look after the area in which you live and the environment", "To look after yourself and your family", "To stay in the UK forever", "To promote work in your local community" ],
         answer: ["To look after the area in which you live and the environment", "To look after yourself and your family"],
         status: 'unanswered', userSelection: null, checked: false, isCorrect: null
     },
@@ -149,7 +144,6 @@ const questions = [
         answer: "Lent",
         status: 'unanswered', userSelection: null, checked: false, isCorrect: null
     }
-
 ];
 
 // --- DEĞİŞKENLER ---
@@ -187,23 +181,23 @@ function startTimer() {
 function updateTimerDisplay() {
     const minutes = Math.floor(timeRemaining / 60);
     const seconds = timeRemaining % 60;
-    timeLimitDiv.textContent = `Kalan Süre: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    // Metin İngilizce'ye çevrildi
+    timeLimitDiv.textContent = `Time Limit: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
      if (timeRemaining < 60 && timeRemaining > 0) {
-        timeLimitDiv.style.color = 'red';
+        timeLimitDiv.style.color = '#cf2e2e'; // Renk güncellendi (CSS'ten de alabilir)
         timeLimitDiv.style.fontWeight = 'bold';
     } else if (timeRemaining > 0) {
-         timeLimitDiv.style.color = 'inherit';
-         timeLimitDiv.style.fontWeight = 'normal';
+         timeLimitDiv.style.color = '#cf2e2e'; // Normal rengi de güncellendi
+         timeLimitDiv.style.fontWeight = 'bold';
      } else {
-         timeLimitDiv.textContent = "Süre Doldu!";
-         timeLimitDiv.style.color = 'red';
+         timeLimitDiv.textContent = "Time Expired!"; // İngilizce
+         timeLimitDiv.style.color = '#cf2e2e';
          timeLimitDiv.style.fontWeight = 'bold';
      }
 }
 
-/** CHECK Sonrası Görsel Geri Bildirimleri Temizler (Wrapper class'ları kaldırıldı) */
+/** CHECK Sonrası Görsel Geri Bildirimleri Temizler */
 function clearFeedback() {
-    // questionWrapperDiv.classList.remove('correct-answer', 'incorrect-answer'); // <<< BU SATIR KALDIRILDI
     const optionDivs = questionAreaDiv.querySelectorAll('.option');
     optionDivs.forEach(div => {
         div.classList.remove('marked-correct', 'marked-incorrect');
@@ -225,7 +219,7 @@ function displayQuestionNumbers() {
                 currentQuestion = index;
                 displayQuestion();
             } else {
-                 alert("Lütfen mevcut soruyu tamamlamak için NEXT butonuna basın.");
+                 alert("Please press NEXT to continue."); // İngilizce
             }
         });
         questionNumbersDiv.appendChild(numberDiv);
@@ -277,7 +271,7 @@ function storeCurrentAnswer() {
     }
 }
 
-/** Check Sonrası Görsel Geri Bildirimi Uygular (Wrapper class'ları kaldırıldı) */
+/** Check Sonrası Görsel Geri Bildirimi Uygular */
 function showCheckFeedback() {
      clearFeedback();
      const question = questions[currentQuestion];
@@ -285,10 +279,7 @@ function showCheckFeedback() {
      const correctAnswer = question.answer;
      const isMultiAnswer = Array.isArray(correctAnswer);
 
-     // Soru alanı arka planını ayarlayan satır kaldırıldı
-     // questionWrapperDiv.classList.add(question.isCorrect ? 'correct-answer' : 'incorrect-answer'); // <<< BU SATIR KALDIRILDI
-
-     // Seçenekleri işaretle (Bu kısım aynı kalıyor)
+     // Seçenekleri işaretle
      const optionDivs = questionAreaDiv.querySelectorAll('.option');
      optionDivs.forEach(div => {
          const input = div.querySelector('input');
@@ -348,7 +339,7 @@ function displayQuestion() {
 
     questionAreaDiv.innerHTML = `
         <div class="question">
-            <strong>Soru ${currentQuestion + 1} / ${questions.length}</strong>
+            <strong>Question ${currentQuestion + 1} / ${questions.length}</strong>
             <div class="question-text"><strong>${question.question}</strong></div>
             <div class="audio-icon"></div>
         </div>
@@ -438,7 +429,7 @@ function handleCheckOrNext() {
 
         const hasSelection = Array.isArray(question.userSelection) ? question.userSelection.length > 0 : question.userSelection !== null;
         if (!hasSelection) {
-            alert("Lütfen bir cevap seçiniz.");
+            alert("Please select an answer."); // İngilizce
             return;
         }
 
@@ -459,7 +450,7 @@ function handleCheckOrNext() {
              question.status = 'answered';
         }
 
-        showCheckFeedback(); // Görsel geri bildirimi uygula (artık sadece seçenekleri renklendiriyor)
+        showCheckFeedback();
         updateNumberDivs();
 
         const optionInputs = questionAreaDiv.querySelectorAll('.options input');
@@ -473,7 +464,7 @@ function handleCheckOrNext() {
             currentQuestion++;
             displayQuestion();
         } else {
-             console.error("Son soruda NEXT butonuna basıldı.");
+             console.error("NEXT button pressed on the last question.");
              finishQuiz();
         }
     }
@@ -512,7 +503,7 @@ function finishQuiz() {
 
     let correctAnswersCount = questions.filter(q => q.isCorrect === true).length;
 
-    let detailedResultsHTML = '<hr><h2>Detaylı Sonuçlar:</h2>';
+    let detailedResultsHTML = '<hr><h2>Detailed Results:</h2>'; // İngilizce
     questions.forEach((q, index) => {
         const isCorrect = q.isCorrect;
         const questionResultClass = ['result-question'];
@@ -524,9 +515,9 @@ function finishQuiz() {
         }
 
         detailedResultsHTML += `<div class="${questionResultClass.join(' ')}">`;
-        detailedResultsHTML += `<strong>Soru ${index + 1}:</strong> ${q.question}<br>`;
+        detailedResultsHTML += `<strong>Question ${index + 1}:</strong> ${q.question}<br>`; // İngilizce
 
-        detailedResultsHTML += `<div class="result-options"><strong>Seçenekler:</strong><br>`;
+        detailedResultsHTML += `<div class="result-options"><strong>Options:</strong><br>`; // İngilizce
         q.options.forEach(opt => {
             let userSelectedThis = false;
             let isCorrectAnswer = false;
@@ -547,7 +538,7 @@ function finishQuiz() {
 
              detailedResultsHTML += `${opt}`;
 
-             if (userSelectedThis) detailedResultsHTML += ` <span class="user-answer">(Seçiminiz)</span>`;
+             if (userSelectedThis) detailedResultsHTML += ` <span class="user-answer">(Your Answer)</span>`; // İngilizce
 
             detailedResultsHTML += `</div>`;
         });
@@ -555,21 +546,21 @@ function finishQuiz() {
 
          if (isCorrect === false && q.checked) {
               let correctAnswerText = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
-              detailedResultsHTML += `<div class="correct-answer-text"><strong>Doğru Cevap:</strong> ${correctAnswerText}</div>`;
-         } else if (q.isCorrect === null && q.userSelection === null) { // Kontrol edilmedi ve seçim yoksa (boş)
+              detailedResultsHTML += `<div class="correct-answer-text"><strong>Correct Answer:</strong> ${correctAnswerText}</div>`; // İngilizce
+         } else if (q.isCorrect === null && q.userSelection === null) {
              let correctAnswerText = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
-             detailedResultsHTML += `<div class="correct-answer-text" style="color:#777;"><strong>Doğru Cevap:</strong> ${correctAnswerText} (Boş Bırakıldı)</div>`;
+             detailedResultsHTML += `<div class="correct-answer-text" style="color:#777;"><strong>Correct Answer:</strong> ${correctAnswerText} (Not Answered)</div>`; // İngilizce
          }
 
         detailedResultsHTML += `</div>`;
     });
 
-    let resultMessage = `<h2>Test Tamamlandı!</h2>`;
-    resultMessage += `Toplam ${questions.length} sorudan ${correctAnswersCount} tanesini doğru cevapladınız.<br>`;
+    let resultMessage = `<h2>Test Completed!</h2>`; // İngilizce
+    resultMessage += `You answered ${correctAnswersCount} out of ${questions.length} questions correctly.<br>`; // İngilizce
     const passed = correctAnswersCount >= passingScore;
     resultMessage += passed
-        ? `<strong style="color:green;">Tebrikler, Testi GEÇTİNİZ!</strong>`
-        : `<strong style="color:red;">Maalesef, Testi GEÇEMEDİNİZ. (Gerekli: ${passingScore} doğru)</strong>`;
+        ? `<strong style="color:green;">Congratulations, You PASSED!</strong>` // İngilizce
+        : `<strong style="color:red;">Unfortunately, You FAILED. (Required: ${passingScore} correct)</strong>`; // İngilizce
 
     resultDiv.innerHTML = resultMessage + detailedResultsHTML;
     resultDiv.style.display = "block";
