@@ -8,19 +8,33 @@
 </head>
 <body>
     <!-- Zaman Sayacı -->
-    <div id="zaman-sayaci">Zaman Limiti: <span id="zaman">44:53</span></div>
+    <div id="zaman-sayaci">Time limit: <span id="zaman">44:53</span></div>
 
-    <!-- Soru Navigasyonu -->
-    <div id="soru-navigasyonu"></div>
+    <!-- Soru Numaraları ve Durum Göstergeleri -->
+    <div id="soru-navigasyonu">
+        <div id="soru-numaralari"></div>
+        <div id="durum-gostergeleri">
+            <span>Correct</span> <span class="durum-kare" id="dogru"></span>
+            <span>Review</span> <span class="durum-kare" id="gozden-gecir"></span>
+            <span>Incorrect</span> <span class="durum-kare" id="yanlis"></span>
+        </div>
+    </div>
 
     <!-- Soru ve Cevaplar -->
-    <div id="soru-alani"></div>
+    <div id="soru-alani">
+        <div id="soru-numarasi">Question 1 of 24</div>
+        <div id="soru-metni">When is St George's day?</div>
+        <div id="ses-simgesi">
+            <img src="sound-icon.png" alt="Sound Icon">
+        </div>
+        <div id="cevaplar"></div>
+    </div>
 
-    <!-- Kontrol Düğmeleri -->
-    <div id="kontrol-dugmeleri">
-        <button id="onceki">Önceki</button>
-        <button id="gozden-gecir">Gözden Geçir</button>
-        <button id="kontrol-et">Kontrol Et</button>
+    <!-- Butonlar -->
+    <div id="butonlar">
+        <button id="onceki" class="buton mavi">Previous</button>
+        <button id="gozden-gecir" class="buton sari">Review</button>
+        <button id="kontrol-et" class="buton mavi">Check</button>
     </div>
 
     <script src="script.js"></script>
