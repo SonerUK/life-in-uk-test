@@ -4,28 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life in UK Test</title>
-    <link rel="stylesheet" href="style.css"> <!-- CSS dosyasını bağla -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Zaman Sayacı -->
     <div id="zaman-sayaci">Zaman Limiti: <span id="zaman">44:53</span></div>
 
     <!-- Soru Navigasyonu -->
-    <div id="soru-navigasyonu">
-        <button class="soru-numarasi aktif">1</button>
-        <button class="soru-numarasi">2</button>
-        <button class="soru-numarasi">3</button>
-        <!-- Sorular burada dinamik olarak eklenecek -->
-    </div>
+    <div id="soru-navigasyonu"></div>
 
     <!-- Soru ve Cevaplar -->
-    <div id="soru-alani">
-        <p id="soru-metni">Soru 1: St George's günü ne zaman?</p>
-        <label><input type="radio" name="cevap" value="17 Mart"> 17 Mart</label><br>
-        <label><input type="radio" name="cevap" value="30 Kasım"> 30 Kasım</label><br>
-        <label><input type="radio" name="cevap" value="1 Mart"> 1 Mart</label><br>
-        <label><input type="radio" name="cevap" value="23 Nisan"> 23 Nisan</label><br>
-    </div>
+    <div id="soru-alani"></div>
 
     <!-- Kontrol Düğmeleri -->
     <div id="kontrol-dugmeleri">
@@ -34,6 +23,6 @@
         <button id="kontrol-et">Kontrol Et</button>
     </div>
 
-    <script src="script.js"></script> <!-- JavaScript dosyasını bağla -->
+    <script src="script.js"></script>
 </body>
 </html>
