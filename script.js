@@ -1,351 +1,213 @@
-// Sorular ve cevaplar
-let questions = [
+const questions = [
     {
         question: "What are two responsibilities that you will have as a British citizen or permanent resident of the UK?",
-        choices: [
+        options: [
             "To look after the area in which you live and the environment",
             "To look after yourself and your family",
             "To stay in the UK forever",
             "To promote work in your local community"
         ],
-        correctAnswer: "To look after the area in which you live and the environment",
-        answer: ""
+        answer: ["To look after the area in which you live and the environment", "To look after yourself and your family"]
     },
     {
         question: "Where is Big Ben located?",
-        choices: [
-            "Buckingham Palace",
-            "The Tower of London",
-            "Trafalgar Square",
-            "The Houses of the Parliament"
-        ],
-        correctAnswer: "The Houses of the Parliament",
-        answer: ""
+        options: ["Buckingham Palace", "The Tower of London", "Trafalgar Square", "The Houses of the Parliament"],
+        answer: "The Houses of the Parliament"
     },
     {
         question: "When were men and women given the right to vote at the age of 21?",
-        choices: [
-            "1918",
-            "1903",
-            "1928",
-            "1923"
-        ],
-        correctAnswer: "1928",
-        answer: ""
+        options: ["1918", "1903", "1928", "1923"],
+        answer: "1928"
     },
     {
         question: "Where is the UK geographically located?",
-        choices: [
-            "South west of Europe",
-            "North east of Europe",
-            "North west of Europe",
-            "South east of Europe"
-        ],
-        correctAnswer: "North west of Europe",
-        answer: ""
+        options: ["South west of Europe", "North east of Europe", "North west of Europe", "South east of Europe"],
+        answer: "North west of Europe"
     },
     {
         question: "Who is the patron Saint of Scotland?",
-        choices: [
-            "St David",
-            "St Patrick",
-            "St George",
-            "St Andrew"
-        ],
-        correctAnswer: "St Andrew",
-        answer: ""
+        options: ["St David", "St Patrick", "St George", "St Andrew"],
+        answer: "St Andrew"
     },
     {
         question: "Which two houses fought in the Wars of the Roses?",
-        choices: [
-            "The House of Chester",
-            "The House of York",
-            "The House of Lancaster",
-            "The House of Newcastle"
-        ],
-        correctAnswer: "The House of York",
-        answer: ""
+        options: ["The House of Chester", "The House of York", "The House of Lancaster", "The House of Newcastle"],
+        answer: ["The House of York", "The House of Lancaster"]
     },
     {
         question: "The Bill of Rights of 1689 confirmed the right to vote for all adult men.",
-        choices: [
-            "True",
-            "False"
-        ],
-        correctAnswer: "False",
-        answer: ""
+        options: ["True", "False"],
+        answer: "False"
     },
     {
         question: "What is the Cenotaph?",
-        choices: [
-            "A flower",
-            "A Christian church",
-            "A war memorial",
-            "A theatre"
-        ],
-        correctAnswer: "A war memorial",
-        answer: ""
+        options: ["A flower", "A Christian church", "A war memorial", "A theatre"],
+        answer: "A war memorial"
     },
     {
         question: "Who was the first female Prime Minister of the UK?",
-        choices: [
-            "Mary Stuart",
-            "Theresa May",
-            "Margaret Thatcher"
-        ],
-        correctAnswer: "Margaret Thatcher",
-        answer: ""
+        options: ["Mary Stuart", "Theresa May", "Margaret Thatcher"],
+        answer: "Margaret Thatcher"
     },
     {
         question: "Who chairs the debates at the House of Commons?",
-        choices: [
-            "A bishop",
-            "The Prime Minister",
-            "The Speaker",
-            "The archbishop of Canterbury"
-        ],
-        correctAnswer: "The Speaker",
-        answer: ""
+        options: ["A bishop", "The Prime Minister", "The Speaker", "The archbishop of Canterbury"],
+        answer: "The Speaker"
     },
     {
         question: "Who was the captain of the English football team that won the World Cup in 1966?",
-        choices: [
-            "Sir Roger Bannister",
-            "Sir Jackie Stewart",
-            "Sir Ian Botham",
-            "Bobby Moore"
-        ],
-        correctAnswer: "Bobby Moore",
-        answer: ""
+        options: ["Sir Roger Bannister", "Sir Jackie Stewart", "Sir Ian Botham", "Bobby Moore"],
+        answer: "Bobby Moore"
     },
     {
         question: "When did the English defeat the Spanish Armada?",
-        choices: [
-            "1466",
-            "1066",
-            "1254",
-            "1588"
-        ],
-        correctAnswer: "1588",
-        answer: ""
+        options: ["1466", "1066", "1254", "1588"],
+        answer: "1588"
     },
     {
         question: "Anyone can make a complaint about the police by writing to the Chief Constable of the police force involved.",
-        choices: [
-            "True",
-            "False"
-        ],
-        correctAnswer: "True",
-        answer: ""
+        options: ["True", "False"],
+        answer: "True"
     },
     {
         question: "What is the minimum age required to serve on a jury?",
-        choices: [
-            "16",
-            "18",
-            "21",
-            "25"
-        ],
-        correctAnswer: "18",
-        answer: ""
+        options: ["16", "18", "21", "25"],
+        answer: "18"
     },
     {
         question: "How is a jury selected?",
-        choices: [
-            "From the NHS registration system",
-            "Randomly from the electoral register",
-            "Alphabetically from the telephone directory",
-            "From a postcode selection"
-        ],
-        correctAnswer: "Randomly from the electoral register",
-        answer: ""
+        options: ["From the NHS registration system", "Randomly from the electoral register", "Alphabetically from the telephone directory", "From a postcode selection"],
+        answer: "Randomly from the electoral register"
     },
     {
         question: "What is a bank holiday?",
-        choices: [
-            "A public holiday when banks are open all day",
-            "A public holiday for people working in banks",
-            "An additional day off that every worker in the UK is entitled to",
-            "A public holiday when banks and many other businesses are closed for the day"
-        ],
-        correctAnswer: "A public holiday when banks and many other businesses are closed for the day",
-        answer: ""
+        options: ["A public holiday when banks are open all day", "A public holiday for people working in banks", "An additional day off that every worker in the UK is entitled to", "A public holiday when banks and many other businesses are closed for the day"],
+        answer: "A public holiday when banks and many other businesses are closed for the day"
     },
     {
         question: "What will you be given to vote before a general election takes place?",
-        choices: [
-            "A ballot slip",
-            "A poll card",
-            "A voting slip",
-            "A poll tax relief"
-        ],
-        correctAnswer: "A poll card",
-        answer: ""
+        options: ["A ballot slip", "A poll card", "A voting slip", "A poll tax relief"],
+        answer: "A poll card"
     },
     {
         question: "Which of the following statements is correct?",
-        choices: [
-            "Solicitors’ charges are usually based on how much time they spend on a case",
-            "Solicitors’ charges are usually based on the nature of a case and its importance"
-        ],
-        correctAnswer: "Solicitors’ charges are usually based on the nature of a case and its importance",
-        answer: ""
+        options: ["Solicitors’ charges are usually based on how much time they spend on a case", "Solicitors’ charges are usually based on the nature of a case and its importance"],
+        answer: "Solicitors’ charges are usually based on how much time they spend on a case"
     },
     {
         question: "By law, which TWO types of media have to give a balanced coverage of all political parties and equal time to rival viewpoints before an election?",
-        choices: [
-            "Television",
-            "Internet",
-            "Newspapers",
-            "Radio"
-        ],
-        correctAnswer: "Television and Radio",
-        answer: ""
+        options: ["Television", "Internet", "Newspapers", "Radio"],
+        answer: ["Television", "Radio"]
     },
     {
         question: "Which of the following territories is a Crown dependency but is NOT part of the UK?",
-        choices: [
-            "Northern Ireland",
-            "Wales",
-            "The Channel Islands",
-            "Scotland"
-        ],
-        correctAnswer: "The Channel Islands",
-        answer: ""
+        options: ["Northern Ireland", "Wales", "The Channel Islands", "Scotland"],
+        answer: "The Channel Islands"
     },
     {
         question: "What did Sir Frank Whittle invent in the 1930s?",
-        choices: [
-            "Radar",
-            "Hovercraft",
-            "Jet engine",
-            "Ballpoint pen"
-        ],
-        correctAnswer: "Jet engine",
-        answer: ""
+        options: ["Radar", "Hovercraft", "Jet engine", "Ballpoint pen"],
+        answer: "Jet engine"
     },
     {
         question: "Who wrote ‘The Daffodils’?",
-        choices: [
-            "William Blake",
-            "Robert Browning",
-            "Lord Byron",
-            "William Wordsworth"
-        ],
-        correctAnswer: "William Wordsworth",
-        answer: ""
+        options: ["William Blake", "Robert Browning", "Lord Byron", "William Wordsworth"],
+        answer: "William Wordsworth"
     },
     {
         question: "Who was given the title of Lord Protector?",
-        choices: [
-            "Charles I",
-            "Charles II",
-            "Winston Churchill",
-            "Oliver Cromwell"
-        ],
-        correctAnswer: "Oliver Cromwell",
-        answer: ""
+        options: ["Charles I", "Charles II", "Winston Churchill", "Oliver Cromwell"],
+        answer: "Oliver Cromwell"
     },
     {
         question: "What are the 40 days before Easter called?",
-        choices: [
-            "Diwali",
-            "Lent",
-            "Hannukah",
-            "Vaisakhi"
-        ],
-        correctAnswer: "Lent",
-        answer: ""
+        options: ["Diwali", "Lent", "Hannukah", "Vaisakhi"],
+        answer: "Lent"
     }
 ];
 
-// Sayfada gösterilecek soru indeksi
-let currentQuestionIndex = 0;
+let currentQuestion = 0;
+let selectedAnswers = [];
 
-// Zaman sayacı
-let timer;
+const questionNumbersDiv = document.querySelector(".question-numbers");
+const questionAreaDiv = document.querySelector(".question-area");
+const previousButton = document.getElementById("previous");
+const reviewButton = document.getElementById("review");
+const nextButton = document.getElementById("next");
 
-function startTimer() {
-    let timeLeft = 2700; // 45 dakika = 2700 saniye
-    timer = setInterval(function() {
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-        document.getElementById('zaman').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-        timeLeft--;
-        
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            alert('Zaman doldu!');
-            showResults();
+function displayQuestion() {
+    const question = questions[currentQuestion];
+    questionAreaDiv.innerHTML = `
+        <div class="question">
+            Question ${currentQuestion + 1} of ${questions.length}
+            <div class="question-text">${question.question}</div>
+            <div class="audio-icon"></div>
+        </div>
+        <div class="options">
+            ${question.options.map((option, index) => `
+                <div class="option">
+                    <input type="radio" name="answer" value="${option}" ${selectedAnswers[currentQuestion] === option ? 'checked' : ''}>
+                    ${option}
+                </div>
+            `).join('')}
+        </div>
+        ${selectedAnswers[currentQuestion] ? `<div class="explanation">
+            <div class="${question.answer === selectedAnswers[currentQuestion] || (Array.isArray(question.answer) && question.answer.includes(selectedAnswers[currentQuestion])) ? 'correct' : 'incorrect'}">${question.answer === selectedAnswers[currentQuestion] || (Array.isArray(question.answer) && question.answer.includes(selectedAnswers[currentQuestion])) ? 'Correct' : 'Incorrect'}</div>
+            ${typeof question.answer === 'string' ? question.answer : question.answer.join(', ')}
+        </div>` : ''}
+    `;
+}
+
+function displayQuestionNumbers() {
+    questions.forEach((question, index) => {
+        const numberDiv = document.createElement("div");
+        numberDiv.classList.add("number");
+        numberDiv.textContent = index + 1;
+        if (index === currentQuestion) {
+            numberDiv.classList.add("active");
         }
-    }, 1000);
-}
-
-// Soruyu güncelleme
-function showQuestion() {
-    const question = questions[currentQuestionIndex];
-    document.getElementById('soru-numarasi').textContent = `Question ${currentQuestionIndex + 1} of 24`;
-    document.getElementById('soru-metni').textContent = question.question;
-
-    let answersHTML = '';
-    question.choices.forEach(choice => {
-        answersHTML += `
-            <input type="radio" name="cevap" value="${choice}" id="cevap${choice}" onclick="saveAnswer('${choice}')">
-            <label for="cevap${choice}">${choice}</label>
-        `;
+        numberDiv.addEventListener("click", () => {
+            currentQuestion = index;
+            displayQuestion();
+            updateNumberDivs();
+        });
+        questionNumbersDiv.appendChild(numberDiv);
     });
-
-    document.getElementById('cevaplar').innerHTML = answersHTML;
-    updateNavigation();
 }
 
-// Kullanıcı cevabını kaydetme
-function saveAnswer(choice) {
-    questions[currentQuestionIndex].answer = choice;
-}
-
-// Soru numaralarını güncelleme
-function updateNavigation() {
-    const navigationHTML = questions.map((_, index) => {
-        return `<span class="soru-numarasi ${currentQuestionIndex === index ? 'aktif' : ''}" onclick="goToQuestion(${index})">${index + 1}</span>`;
-    }).join('');
-    document.getElementById('soru-numaralari').innerHTML = navigationHTML;
-}
-
-// Soruya gitme
-function goToQuestion(index) {
-    currentQuestionIndex = index;
-    showQuestion();
-}
-
-// Test sonuçlarını gösterme
-function showResults() {
-    let correctAnswers = 0;
-    questions.forEach((question) => {
-        if (question.answer === question.correctAnswer) {
-            correctAnswers++;
+function updateNumberDivs() {
+    const numberDivs = document.querySelectorAll(".number");
+    numberDivs.forEach((div, index) => {
+        if (index === currentQuestion) {
+            div.classList.add("active");
+        } else {
+            div.classList.remove("active");
         }
     });
-    alert(`Test tamamlandı! Doğru cevap sayınız: ${correctAnswers} / ${questions.length}`);
 }
 
-// Sayfa yüklendiğinde başlat
-window.onload = function() {
-    startTimer();
-    showQuestion();
-};
-
-// Butonlara tıklama işlemleri
-document.getElementById('onceki').addEventListener('click', function() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        showQuestion();
+function handleNext() {
+    const selectedOption = document.querySelector("input[name='answer']:checked");
+    if (selectedOption) {
+        selectedAnswers[currentQuestion] = selectedOption.value;
     }
-});
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        displayQuestion();
+        updateNumberDivs();
+    }
+}
 
-document.getElementById('gozden-gecir').addEventListener('click', function() {
-    // Gözden geçir işlemi
-    showQuestion();
-});
+function handlePrevious() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        displayQuestion();
+        updateNumberDivs();
+    }
+}
 
-document.getElementById('kontrol-et').addEventListener('click', showResults);
+displayQuestionNumbers();
+displayQuestion();
+
+nextButton.addEventListener("click", handleNext);
+previousButton.addEventListener("click", handlePrevious);
