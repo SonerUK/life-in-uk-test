@@ -126,6 +126,8 @@ const questions = [
     }
 ];
 
+
+
 let currentQuestion = 0;
 let selectedAnswers = [];
 
@@ -183,6 +185,18 @@ function updateNumberDivs() {
         } else {
             div.classList.remove("active");
         }
+        if (selectedAnswers[index]) {
+            if (questions[index].answer === selectedAnswers[index] || (Array.isArray(questions[index].answer) && questions[index].answer.includes(selectedAnswers[index]))) {
+                div.classList.add("correct");
+                div.classList.remove("incorrect");
+            } else {
+                div.classList.add("incorrect");
+                div.classList.remove("correct");
+            }
+        } else {
+            div.classList.remove("correct");
+            div.classList.remove("incorrect");
+        }
     });
 }
 
@@ -206,8 +220,19 @@ function handlePrevious() {
     }
 }
 
+function handleCheck() {
+    const selectedOption = document.querySelector("input[name='answer']:checked");
+    if (selectedOption) {
+        selectedAnswers[currentQuestion] = selectedOption.value;
+        displayQuestion();
+        updateNumberDivs();
+        handleNext();
+    }
+}
+
 displayQuestionNumbers();
 displayQuestion();
 
 nextButton.addEventListener("click", handleNext);
 previousButton.addEventListener("click", handlePrevious);
+reviewButton.addEventListener("click", handleCheck); // "Check" butonuna basıldığında handleCheck fonksiyonunu çalıştır
