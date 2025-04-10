@@ -124,18 +124,20 @@ const questions = [
         options: ["Diwali", "Lent", "Hannukah", "Vaisakhi"],
         answer: "Lent"
     }
+
 ];
-
-
 
 let currentQuestion = 0;
 let selectedAnswers = [];
+let correctAnswers = 0;
 
 const questionNumbersDiv = document.querySelector(".question-numbers");
 const questionAreaDiv = document.querySelector(".question-area");
 const previousButton = document.getElementById("previous");
 const checkButton = document.getElementById("check");
 const nextButton = document.getElementById("next");
+const finishButton = document.getElementById("finish");
+const resultDiv = document.getElementById("result");
 
 function displayQuestion() {
     const question = questions[currentQuestion];
@@ -158,6 +160,10 @@ function displayQuestion() {
             ${typeof question.answer === 'string' ? question.answer : question.answer.join(', ')}
         </div>` : ''}
     `;
+    if (currentQuestion === questions.length - 1) {
+        checkButton.style.display = "none";
+        finishButton.style.display = "block";
+    }
 }
 
 function displayQuestionNumbers() {
@@ -222,8 +228,22 @@ function handleCheck() {
         selectedAnswers[currentQuestion] = selectedOption.value;
         displayQuestion();
         updateNumberDivs();
+        if (questions[currentQuestion].answer === selectedAnswers[currentQuestion] || (Array.isArray(questions[currentQuestion].answer) && questions[currentQuestion].answer.includes(selectedAnswers[currentQuestion]))) {
+            correctAnswers++;
+        }
         handleNext();
     }
+}
+
+function handleFinish() {
+    let resultMessage = `You answered ${correctAnswers} of ${questions.length} questions correctly.`;
+    if (correctAnswers >= 18) {
+        resultMessage += "<br>You PASSED the test!";
+    } else {
+        resultMessage += "<br>You FAILED the test!";
+    }
+    resultDiv.innerHTML = resultMessage;
+    resultDiv.style.display = "block";
 }
 
 displayQuestionNumbers();
@@ -231,4 +251,5 @@ displayQuestion();
 
 nextButton.addEventListener("click", handleNext);
 previousButton.addEventListener("click", handlePrevious);
-checkButton.addEventListener("click", handleCheck); // "Check" butonuna basıldığında handleCheck fonksiyonunu çalıştır
+checkButton.addEventListener("click", handleCheck);
+finishButton.addEventListener("click", handleFinish);
