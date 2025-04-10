@@ -77,7 +77,7 @@ body {
 
 /* Doğru cevaplanmış soru numarası (.number class'ına ek olarak .correct class'ı varsa) */
 .number.correct {
-  background-color: #95D195; /* Arka planı yeşil yapar. */
+  background-color: rgb(149, 209, 149); /* Arka planı yeşil yapar. */
   color: white;              /* Yazı rengini beyaz yapar. */
   border-color: #16a34a;     /* Kenarlık rengini biraz daha koyu yeşil yapar. */
   font-weight: bold;         /* Yazıyı kalın (bold) yapar. */
@@ -85,7 +85,7 @@ body {
 
 /* Yanlış cevaplanmış soru numarası (.number class'ına ek olarak .incorrect class'ı varsa) */
 .number.incorrect {
-  background-color: #FF9191; /* Arka planı kırmızı yapar. */
+  background-color: rgb(255, 145, 145); /* Arka planı kırmızı yapar. */
   color: white;              /* Yazı rengini beyaz yapar. */
   border-color: #dc2626;     /* Kenarlık rengini biraz daha koyu kırmızı yapar. */
   font-weight: normal;         /* Yazıyı kalın (bold) yapar. */
