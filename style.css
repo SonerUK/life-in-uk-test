@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
-    justify-content: center;
+    text-align: left; /* Sola hizala */
 }
 
 .number {
@@ -59,8 +59,8 @@ body {
 
 .status {
     display: flex;
-    justify-content: center;
     margin-bottom: 10px;
+    text-align: left; /* Sola hizala */
 }
 
 .status-item {
@@ -134,7 +134,7 @@ body {
 
 .buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Butonları uçlara yasla */
 }
 
 button {
@@ -174,10 +174,10 @@ button.next {
     font-weight: bold;
 }
 
-.option.correct { /* Yeni eklenen kısım */
-    background-color: #ccffcc; /* Açık yeşil */
+.option.correct {
+    background-color: #ccffcc;
 }
 
-.option.incorrect { /* Yeni eklenen kısım */
-    background-color: #ffcccc; /* Açık kırmızı */
+.option.incorrect {
+    background-color: #ffcccc;
 }
