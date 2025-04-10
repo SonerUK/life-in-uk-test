@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 20px;
     background-color: #F8FAF5;
-    color: #000; /* <<< Varsayılan yazı rengi siyah */
+    color: #000;
 }
 
 .container {
@@ -19,11 +19,11 @@ body {
 
 /* === Zamanlayıcı === */
 .time-limit {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 18px; /* Boyut korundu */
+    font-weight: bold; /* <<< BOLD istendi */
     margin-bottom: 15px;
     text-align: left;
-    color: #000; /* <<< Siyah */
+    color: #cf2e2e; /* <<< RENK DEĞİŞTİ & BOLD */
 }
 
 /* === Soru Numaraları === */
@@ -48,31 +48,31 @@ body {
     box-sizing: border-box;
     text-align: center;
     font-weight: bold;
-    color: #000; /* <<< Numara yazı rengi siyah */
+    color: #000;
     background-color: #fff;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .number.active {
     background-color: #015DC8;
-    color: white; /* Renkli arka planlarda beyaz kalabilir */
+    color: white;
     border-color: #014A9E;
 }
 
 .number.review {
   background-color: #FFC941;
-  color: #000; /* <<< Sarı üzerine siyah */
+  color: #000;
   border-color: #E0B03A;
 }
 
 .number.correct {
   background-color: #22c55e;
-  color: white; /* Renkli arka planlarda beyaz kalabilir */
+  color: white;
   border-color: #16a34a;
 }
 .number.incorrect {
   background-color: #ef4444;
-  color: white; /* Renkli arka planlarda beyaz kalabilir */
+  color: white;
   border-color: #dc2626;
 }
 
@@ -82,8 +82,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 15px;
-    font-size: 12px;
-    color: #000; /* <<< Siyah */
+    font-size: 12px; /* Boyut korundu */
 }
 
 .status-item {
@@ -91,6 +90,8 @@ body {
     align-items: center;
     margin-right: 15px;
     margin-bottom: 5px;
+    color: #cf2e2e; /* <<< RENK DEĞİŞTİ */
+    font-weight: bold; /* <<< BOLD istendi */
 }
 
 .status-circle {
@@ -117,7 +118,6 @@ body {
     padding: 10px;
 }
 
-
 .question {
     font-size: 16px;
     margin-bottom: 15px;
@@ -127,9 +127,11 @@ body {
     text-align: left;
 }
 
-.question strong:first-child { /* Soru X / Y kısmı */
-    font-size: 14px;
-    color: #666; /* Bu gri kalabilir, ana metin değil */
+/* Soru sıra numarası (Question X / Y) */
+.question strong:first-child {
+    font-size: 14px; /* Boyut korundu */
+    color: #cf2e2e; /* <<< RENK DEĞİŞTİ */
+    font-weight: bold; /* <<< BOLD istendi (strong zaten bold yapar) */
     margin-bottom: 10px;
     display: block;
 }
@@ -139,7 +141,7 @@ body {
     margin-top: 0;
     line-height: 1.5;
     width: 100%;
-    color: #000; /* <<< Siyah */
+    color: #000;
 }
 
 .audio-icon {
@@ -171,7 +173,7 @@ body {
 .option input[type="radio"]:disabled + label,
 .option input[type="checkbox"]:disabled + label {
     cursor: default;
-    color: #666; /* Pasif seçenek metni gri kalabilir */
+    color: #666;
 }
 .option input[type="radio"]:disabled,
 .option input[type="checkbox"]:disabled {
@@ -191,7 +193,7 @@ body {
     flex-shrink: 0;
     width: 1.2em;
     height: 1.2em;
-    accent-color: #015DC8; /* Seçili iç renk */
+    accent-color: #015DC8;
 }
 
 .option label {
@@ -199,7 +201,7 @@ body {
     cursor: pointer;
     flex-grow: 1;
     line-height: 1.4;
-    color: #000; /* <<< Seçenek metni siyah */
+    color: #000;
 }
 
 /* Seçim anında geri bildirim (Arka Plan) */
@@ -210,20 +212,16 @@ body {
 
 /* CHECK sonrası seçenek stilleri */
 .option.marked-correct {
-  background-color: #95D195; /* Arka plan yeşil (!important kaldırıldı) */
+  background-color: #95D195;
   border-color: #66BB6A;
-  color: #000; /* <<< Metin siyah */
-  font-weight: bold; /* <<< Metin kalın */
+  color: #000;
+  font-weight: bold;
 }
-/* Kalınlığı sadece label'a vermek daha doğru olabilir: */
-/* .option.marked-correct label { font-weight: bold; } */
-
 
 .option.marked-incorrect {
-  background-color: #FF9191; /* Arka plan kırmızı (!important kaldırıldı) */
+  background-color: #FF9191;
   border-color: #E57373;
-  color: #000; /* <<< Metin siyah */
-  /* font-weight: normal; */ /* Yanlış cevap kalın olmasın */
+  color: #000;
 }
 .option.marked-incorrect label::after {
     content: ' ❌';
@@ -235,7 +233,7 @@ body {
 .option.marked-correct label::after {
     content: ' ✔️';
     color: #16a34a;
-    font-weight: bold; /* İkon kalın kalsın */
+    font-weight: bold;
     margin-left: 5px;
     display: inline-block;
 }
@@ -255,7 +253,7 @@ button {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
-    color: white; /* Buton yazı rengi beyaz kaldı */
+    color: white;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
@@ -284,7 +282,7 @@ button:hover:not(:disabled) {
 button.previous { background-color: #6b7280; }
 button.review-btn {
     background-color: #FFC941;
-    color: #000; /* <<< Sarı buton yazı rengi siyah */
+    color: #000;
 }
 button.finish { background-color: #dc2626; }
 
@@ -313,15 +311,14 @@ button:disabled {
     margin-top: 20px;
     background-color: #f0f0f0;
     line-height: 1.6;
-    color: #000; /* <<< Sonuç alanı metin rengi */
+    color: #000;
 }
 .result h2 {
     margin-top: 0;
-    color: #000; /* <<< Başlık siyah */
+    color: #000;
 }
-.result strong { /* Geçti/Kaldı yazısı */
+.result strong {
     font-size: 1.1em;
-    /* Renk JS tarafından inline olarak veriliyor (yeşil/kırmızı) */
 }
 .result hr {
     margin: 20px 0;
@@ -331,23 +328,14 @@ button:disabled {
 
 
 /* Detaylı sonuçlar için stiller */
-.result-question { margin-bottom: 15px; padding: 10px; border-radius: 5px; text-align: left; border: 1px solid #ccc; color: #000; } /* <<< Metin siyah */
+.result-question { margin-bottom: 15px; padding: 10px; border-radius: 5px; text-align: left; border: 1px solid #ccc; color: #000; }
 .result-question.correct { background-color: #95D195; border-color: #66BB6A; }
 .result-question.incorrect { background-color: #FF9191; border-color: #E57373; }
-.result-question strong { display: block; margin-bottom: 8px; font-size: 1em; font-weight: bold; color: #000; } /* <<< Soru metni siyah */
+.result-question strong { display: block; margin-bottom: 8px; font-size: 1em; font-weight: bold; color: #000; }
 .result-options { margin-top: 8px; }
-.result-options .option { border: none; padding: 4px 0; background-color: transparent !important; cursor: default; margin-bottom: 4px; color: #000; } /* <<< Seçenek metni siyah */
+.result-options .option { border: none; padding: 4px 0; background-color: transparent !important; cursor: default; margin-bottom: 4px; color: #000; }
 .result-options .option:hover { background-color: transparent !important; }
 .result-options label::after { display: none; }
-.user-answer { font-style: italic; color: #555; margin-left: 5px; } /* Bu gri kalabilir */
-.correct-answer-text {
-    font-weight: bold;
-    color: #16a34a; /* Doğru cevap metni yeşil kaldı */
-    display: block;
-    margin-top: 5px;
-}
-/* Sonuçlardaki Boş Bırakıldı metni */
-.result-question .correct-answer-text[style*="color:#777"] {
-    color: #555 !important; /* Biraz daha belirgin gri */
-    font-style: italic;
-}
+.user-answer { font-style: italic; color: #555; margin-left: 5px; }
+.correct-answer-text { font-weight: bold; color: #16a34a; display: block; margin-top: 5px; }
+.result-question .correct-answer-text[style*="color:#777"] { color: #555 !important; font-style: italic; }
