@@ -127,6 +127,10 @@ const questions = [
 
 ];
 
+
+
+];
+
 let currentQuestion = 0;
 let selectedAnswers = [];
 let correctAnswers = 0;
