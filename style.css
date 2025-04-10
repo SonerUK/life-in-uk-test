@@ -29,13 +29,15 @@ body {
 .number {
     width: 30px;
     height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 2px solid #000; /* Kenar çizgisini tam siyah yaptık */
+    border-radius: 50%;
     margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .number.active {
@@ -55,20 +57,33 @@ body {
 
 .status {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     margin-bottom: 10px;
 }
 
-.correct {
-    color: green;
+.status-item {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
 }
 
-.review {
-    color: orange;
+.status-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
-.incorrect {
-    color: red;
+.correct-circle {
+    background-color: green;
+}
+
+.review-circle {
+    background-color: orange;
+}
+
+.incorrect-circle {
+    background-color: red;
 }
 
 .question {
@@ -122,10 +137,18 @@ button {
     cursor: pointer;
 }
 
-button.review {
+button.check {
     background-color: orange;
 }
 
 button.next {
     background-color: green;
+}
+
+.result {
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #f0f0f0;
 }
