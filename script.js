@@ -126,6 +126,7 @@ const questions = [
     }
 
 
+
 ];
 
 let currentQuestion = 0;
@@ -144,8 +145,9 @@ function displayQuestion() {
     const question = questions[currentQuestion];
     questionAreaDiv.innerHTML = `
         <div class="question">
-            <strong>${currentQuestion + 1}</strong>
-            <div class="question-text">${question.question}</div>
+            <strong>${currentQuestion + 1}</strong> of <strong>${questions.length}</strong>
+            <br><br>
+            <div class="question-text"><strong>${question.question}</strong></div>
             <div class="audio-icon"></div>
         </div>
         <div class="options">
