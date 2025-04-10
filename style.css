@@ -18,14 +18,14 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-    text-align: left; /* Sola hizala */
+    text-align: left;
 }
 
 .question-numbers {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
-    justify-content: center; /* Ortala */
+    justify-content: center;
 }
 
 .number {
@@ -94,11 +94,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-align: left; /* Sola hizala */
+    text-align: left;
 }
 
 .question-text {
-    font-weight: bold; /* Soruyu kalın yap */
+    font-weight: bold;
 }
 
 .audio-icon {
@@ -108,7 +108,7 @@ body {
 
 .options {
     margin-bottom: 10px;
-    text-align: left; /* Sola hizala */
+    text-align: left;
 }
 
 .option {
@@ -129,12 +129,12 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 10px;
-    text-align: left; /* Sola hizala */
+    text-align: left;
 }
 
 .buttons {
     display: flex;
-    justify-content: center; /* Ortala */
+    justify-content: center;
 }
 
 button {
@@ -160,4 +160,16 @@ button.next {
     border-radius: 5px;
     margin-top: 20px;
     background-color: #f0f0f0;
+}
+
+.question::before { /* Yeni eklenen kısım */
+    content: "Question ";
+}
+
+.question::after { /* Yeni eklenen kısım */
+    content: " of 24";
+}
+
+.question strong { /* Yeni eklenen kısım */
+    font-weight: bold;
 }
