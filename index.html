@@ -3,20 +3,23 @@
 <head>
     <title>British Citizenship Test</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="UTF-8"> </head>
+    <meta charset="UTF-8">
+</head>
 <body>
     <div class="container">
-        <div class="time-limit" id="time-limit">Time limit: 45:00</div> <div class="question-numbers"></div>
+        <div class="time-limit" id="time-limit">Time limit: 45:00</div>
+        <div class="question-numbers"></div>
         <div class="status">
             <span class="status-item"><span class="status-circle correct-circle"></span> DOĞRU</span>
             <span class="status-item"><span class="status-circle review-circle"></span> SONRA BAK</span>
             <span class="status-item"><span class="status-circle incorrect-circle"></span> YANLIŞ</span>
         </div>
-        <div class="question-area"></div>
+        <div id="question-wrapper">
+             <div class="question-area"></div>
+        </div>
         <div class="buttons">
-            <button class="previous" id="previous">ÖNCEKİ</button>
-            <button class="check" id="review">SONRA BAK</button>
-            <button class="next" id="next">SIRADAKİ</button>
+            <button class="previous" id="previous">PREVIOUS</button>
+            <button class="review-btn" id="review">REVIEW</button> <button class="check-btn" id="check">CHECK</button>    <button class="next" id="next">NEXT</button>
             <button class="finish" id="finish" style="display: none;">BİTİR</button>
         </div>
         <div class="result" id="result" style="display: none;"></div>
