@@ -31,7 +31,7 @@ body {
 .number {
     width: 30px;
     height: 30px;
-    border: 2px solid #ccc; /* Kenar çizgisini belirginleştirdik */
+    border: 2px solid #000; /* Kenar çizgisini belirginleştirdik */
     border-radius: 50%; /* Yuvarlak şekil */
     margin: 5px;
     display: flex;
