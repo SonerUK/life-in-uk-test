@@ -184,14 +184,14 @@ function updateTimerDisplay() {
     // Metin İngilizce'ye çevrildi
     timeLimitDiv.textContent = `Time Limit: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
      if (timeRemaining < 60 && timeRemaining > 0) {
-        timeLimitDiv.style.color = '#cf2e2e'; // Renk güncellendi (CSS'ten de alabilir)
+        timeLimitDiv.style.color = '#000'; // Renk güncellendi (CSS'ten de alabilir)
         timeLimitDiv.style.fontWeight = 'bold';
     } else if (timeRemaining > 0) {
-         timeLimitDiv.style.color = '#cf2e2e'; // Normal rengi de güncellendi
+         timeLimitDiv.style.color = '#000'; // Normal rengi de güncellendi
          timeLimitDiv.style.fontWeight = 'bold';
      } else {
          timeLimitDiv.textContent = "Time Expired!"; // İngilizce
-         timeLimitDiv.style.color = '#cf2e2e';
+         timeLimitDiv.style.color = '#000';
          timeLimitDiv.style.fontWeight = 'bold';
      }
 }
