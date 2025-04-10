@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 10px;
-    text-align: left; /* Sola hizala */
+    text-align: left;
 }
 
 .number {
@@ -60,7 +60,7 @@ body {
 .status {
     display: flex;
     margin-bottom: 10px;
-    text-align: left; /* Sola hizala */
+    text-align: left;
 }
 
 .status-item {
@@ -92,13 +92,14 @@ body {
     font-size: 16px;
     margin-bottom: 10px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column; /* Alt alta sırala */
+    align-items: flex-start; /* Sola hizala */
     text-align: left;
 }
 
 .question-text {
     font-weight: bold;
+    margin-top: 10px; /* Üst boşluk ekle */
 }
 
 .audio-icon {
@@ -134,7 +135,7 @@ body {
 
 .buttons {
     display: flex;
-    justify-content: space-between; /* Butonları uçlara yasla */
+    justify-content: space-between;
 }
 
 button {
@@ -162,16 +163,13 @@ button.next {
     background-color: #f0f0f0;
 }
 
-.question::before {
-    content: "Question ";
+.question strong:first-child { /* İlk strong öğesini seç */
+    display: block; /* Blok seviyesinde yap */
 }
 
-.question::after {
-    content: " of 24";
-}
-
-.question strong {
-    font-weight: bold;
+.question strong:last-child { /* Son strong öğesini seç */
+    display: block; /* Blok seviyesinde yap */
+    margin-top: 10px; /* Üst boşluk ekle */
 }
 
 .option.correct {
