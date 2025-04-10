@@ -125,8 +125,6 @@ const questions = [
         answer: "Lent"
     }
 
-];
-
 
 
 ];
