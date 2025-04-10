@@ -26,24 +26,16 @@ body {
     margin-bottom: 10px;
 }
 
-
-
 .number {
     width: 30px;
     height: 30px;
-    border: 2px solid #000; /* Kenar çizgisini belirginleştirdik */
-    border-radius: 50%; /* Yuvarlak şekil */
+    border: 1px solid #ccc;
+    border-radius: 5px;
     margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-sizing: border-box; /* Boyutlandırma sorununu çözdük */
-    text-align: center; /* Sayıyı ortaladık */
-}
-
-
-    
 }
 
 .number.active {
@@ -63,33 +55,20 @@ body {
 
 .status {
     display: flex;
-    justify-content: center; /* İfadeleri yan yana ortalar */
+    justify-content: space-around;
     margin-bottom: 10px;
 }
 
-.status-item {
-    display: flex;
-    align-items: center;
-    margin-right: 10px; /* İfadeler arasında boşluk bırakır */
+.correct {
+    color: green;
 }
 
-.status-circle {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 5px;
+.review {
+    color: orange;
 }
 
-.correct-circle {
-    background-color: green;
-}
-
-.review-circle {
-    background-color: orange;
-}
-
-.incorrect-circle {
-    background-color: red;
+.incorrect {
+    color: red;
 }
 
 .question {
@@ -143,18 +122,10 @@ button {
     cursor: pointer;
 }
 
-button.check {
+button.review {
     background-color: orange;
 }
 
 button.next {
     background-color: green;
-}
-
-.result {
-    text-align: center;
-    padding: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-    background-color: #f0f0f0;
 }
