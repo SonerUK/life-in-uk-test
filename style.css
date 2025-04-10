@@ -98,7 +98,8 @@ body {
 }
 
 .question-text {
-    font-weight: bold;
+     font-family: "Arial", sans-serif;
+     font-weight: bold;
     margin-top: 10px; /* Üst boşluk ekle */
 }
 
