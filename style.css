@@ -22,7 +22,7 @@ body {
 /* === Zamanlayıcı === */
 /* Zamanlayıcı metnini içeren element (.time-limit class'ına sahip div) */
 .time-limit {
-    font-size: 18px;           /* Yazı boyutunu 18 piksel yapar. */
+    font-size: 14px;           /* Yazı boyutunu 18 piksel yapar. */
     font-weight: bold;         /* Yazıyı kalın (bold) yapar. */
     margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır. */
     text-align: left;          /* Metni sola hizalar. */
@@ -36,14 +36,14 @@ body {
     flex-wrap: wrap;           /* Numaralar sığmazsa alt satıra kaydırır. */
     margin-bottom: 15px;       /* Altına 15 piksel dış boşluk bırakır. */
     padding-bottom: 10px;      /* İçeriğinin altına (alt kenarlığa kadar) 10 piksel boşluk ekler. */
-    border-bottom: 1px solid #eee; /* Altına 1 piksel kalınlığında, çok açık gri, düz bir çizgi ekler. */
+    border-bottom: 2px solid #ccc; /* Altına 1 piksel kalınlığında, çok açık gri, düz bir çizgi ekler. */
 }
 
 /* Tek bir soru numarası yuvarlağı (.number class'ına sahip div) */
 .number {
     width: 30px;               /* Yuvarlağın genişliği 30 piksel. */
     height: 30px;              /* Yuvarlağın yüksekliği 30 piksel. */
-    border: 2px solid #555;    /* 2 piksel kalınlığında, koyu gri kenarlık. */
+    border: 1px solid #ccc;    /* 1 piksel kalınlığında, açık gri kenarlık. */
     border-radius: 50%;        /* Köşeleri %50 yuvarlayarak tam daire yapar. */
     margin: 5px;               /* Dışına her yönden 5 piksel boşluk (diğer numaralarla arasını açar). */
     display: flex;             /* İçindeki rakamı ortalamak için flex modelini kullanır. */
@@ -52,10 +52,10 @@ body {
     cursor: pointer;           /* Fare üzerine gelince el işareti gösterir (tıklanabilir). */
     box-sizing: border-box;    /* Genişlik/yüksekliğe kenarlık ve dolguyu dahil eder. */
     text-align: center;        /* Metni (rakamı) yatayda ortalar. */
-    font-weight: bold;         /* Rakamı kalın yapar. */
+    font-weight: normal;       /* Rakamı kalın yapmaz, normal kalınlıkta gösterir. normal yerine bold yazarsan bold olur*/
     color: #000;               /* Rakamın rengini siyah yapar. */
     background-color: #fff;    /* Arka plan rengini beyaz yapar. */
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s; /* Arka plan, yazı rengi ve kenarlık değiştiğinde 0.2 saniyelik yumuşak geçiş efekti uygular. */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Arka plan, yazı rengi ve kenarlık değiştiğinde 0.2 saniyelik yumuşak geçiş efekti uygular. */
 }
 
 /* Aktif (o an görüntülenen) soru numarası (.number class'ına ek olarak .active class'ı varsa) */
@@ -63,6 +63,8 @@ body {
     background-color: #015DC8; /* Arka planı mavi yapar. */
     color: white;              /* Yazı rengini beyaz yapar. */
     border-color: #014A9E;     /* Kenarlık rengini biraz daha koyu mavi yapar. */
+    font-weight: bold;         /* Yazıyı kalın (bold) yapar. */
+    
 }
 
 /* İncelenmek üzere işaretlenen soru numarası (.number class'ına ek olarak .review class'ı varsa) */
@@ -70,20 +72,23 @@ body {
   background-color: #FFC941; /* Arka planı sarı yapar. */
   color: #000;              /* Yazı rengini siyah yapar. */
   border-color: #E0B03A;     /* Kenarlık rengini biraz daha koyu sarı yapar. */
+  font-weight: bold;         /* Yazıyı kalın (bold) yapar. */
 }
 
 /* Doğru cevaplanmış soru numarası (.number class'ına ek olarak .correct class'ı varsa) */
 .number.correct {
-  background-color: #22c55e; /* Arka planı yeşil yapar. */
+  background-color: #95D195; /* Arka planı yeşil yapar. */
   color: white;              /* Yazı rengini beyaz yapar. */
   border-color: #16a34a;     /* Kenarlık rengini biraz daha koyu yeşil yapar. */
+  font-weight: bold;         /* Yazıyı kalın (bold) yapar. */
 }
 
 /* Yanlış cevaplanmış soru numarası (.number class'ına ek olarak .incorrect class'ı varsa) */
 .number.incorrect {
-  background-color: #ef4444; /* Arka planı kırmızı yapar. */
+  background-color: #FF9191; /* Arka planı kırmızı yapar. */
   color: white;              /* Yazı rengini beyaz yapar. */
   border-color: #dc2626;     /* Kenarlık rengini biraz daha koyu kırmızı yapar. */
+  font-weight: normal;         /* Yazıyı kalın (bold) yapar. */
 }
 
 
