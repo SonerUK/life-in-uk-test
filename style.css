@@ -518,3 +518,13 @@ button:disabled {
     color: #555 !important;    /* Rengini daha belirgin gri yapar. */
     font-style: italic;        /* Yazıyı italik yapar. */
 }
+
+
+
+/* REVIEW butonu NEXT moduna geçtiğinde uygulanacak stil */
+button#review.mode-next-after-review {
+    background-color: #16a34a; /* Yeşil (NEXT butonu ile aynı renk) */
+    color: white; /* Yazı rengi beyaz */
+}
+
+/* Zaten var olan diğer stiller aynı kalacak... */
