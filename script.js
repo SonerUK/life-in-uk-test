@@ -50,7 +50,7 @@ const questions = [
     },
      {
         question: "Who was the first female Prime Minister of the UK?",
-        options: ["Mary Stuart", "Theresa May", "Margaret Thatcher"],
+        options: ["Mary Stuart", "Florence Nightingale", "Theresa May", "Margaret Thatcher"],
         answer: "Margaret Thatcher",
         status: 'unanswered', userSelection: null, checked: false, isCorrect: null
     },
